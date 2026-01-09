@@ -1,35 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Isaac Legene</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .profile-img {
+      width: 240px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .hero-text h1 {
+      margin-top: 0;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
 <body>
   <div class="container">
 
-    <h1>Isaac Legene</h1>
+    <div class="hero">
+      <img src="images/headshot.JPG" alt="Photo of Isaac" class="profile-img">
 
-    <img src="images/headshot.JPG" alt="Photo of Isaac" class="profile-img">
+      <div class="hero-text">
+        <h1>Isaac Legene</h1>
 
-    <p>
-      I’m a Master’s student in Robotics with a focus on control systems,
-      reinforcement learning, and humanoid robotics. My work sits at the
-      intersection of simulation, learning-based control, and real-world
-      deployment.
-    </p>
+        <p>
+          I’m a Master’s student in Robotics with a focus on control systems,
+          reinforcement learning, and humanoid robotics. My work sits at the
+          intersection of simulation, learning-based control, and real-world
+          deployment.
+        </p>
 
-    <p>
-      I have hands-on experience building and training locomotion and
-      manipulation policies in simulation, particularly using NVIDIA Isaac
-      Lab and modern RL frameworks. I’ve worked extensively with velocity
-      tracking, stand-up behaviors, curriculum learning, and manager-based
-      RL environments for legged and humanoid robots.
-    </p>
+        <p>
+          I have hands-on experience building and training locomotion and
+          manipulation policies in simulation, particularly using NVIDIA Isaac
+          Lab and modern RL frameworks. I’ve worked extensively with velocity
+          tracking, stand-up behaviors, curriculum learning, and manager-based
+          RL environments for legged and humanoid robots.
+        </p>
 
-    <p>
-      Beyond research, I have industry experience in manufacturing and
-      automation, including virtual commissioning, industrial simulation,
-      and control systems.
-    </p>
+        <p>
+          Beyond research, I have industry experience in manufacturing and
+          automation, including virtual commissioning, industrial simulation,
+          and control systems.
+        </p>
 
-    <p>
-      My interests include humanoid locomotion, robot learning,
-      simulation-to-real transfer, and building robust, field-ready robotic systems.
-    </p>
+        <p>
+          My interests include humanoid locomotion, robot learning,
+          simulation-to-real transfer, and building robust, field-ready robotic systems.
+        </p>
+      </div>
+    </div>
 
     <h2>Interests</h2>
     <ul>
@@ -47,3 +94,4 @@
 
   </div>
 </body>
+</html>
