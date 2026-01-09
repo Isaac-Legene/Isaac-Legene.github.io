@@ -2,96 +2,135 @@
 <html>
 <head>
   <title>Isaac Legene</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
+      color: white;
     }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    .hero {
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      padding: 15px 40px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 40px;
-      margin-bottom: 40px;
+      z-index: 10;
     }
 
-    .profile-img {
-      width: 240px;
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("images/hero-bg.jpg") center/cover no-repeat;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero img {
+      width: 160px;
       border-radius: 50%;
-      flex-shrink: 0;
+      margin-bottom: 20px;
     }
 
-    .hero-text h1 {
-      margin-top: 0;
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
     }
 
-    @media (max-width: 800px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
+    .hero p {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
+
+    /* ICONS */
+    .icons a {
+      margin: 0 10px;
+      font-size: 22px;
+      color: white;
+      text-decoration: none;
+    }
+
+    /* BUTTON */
+    .resume-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 10px 22px;
+      border: 1px solid white;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .resume-btn:hover {
+      background: white;
+      color: black;
     }
   </style>
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-  <div class="container">
 
-    <div class="hero">
-      <img src="images/headshot.JPG" alt="Photo of Isaac" class="profile-img">
-
-      <div class="hero-text">
-        <h1>Isaac Legene</h1>
-
-        <p>
-          I’m a Master’s student in Robotics with a focus on control systems,
-          reinforcement learning, and humanoid robotics. My work sits at the
-          intersection of simulation, learning-based control, and real-world
-          deployment.
-        </p>
-
-        <p>
-          I have hands-on experience building and training locomotion and
-          manipulation policies in simulation, particularly using NVIDIA Isaac
-          Lab and modern RL frameworks. I’ve worked extensively with velocity
-          tracking, stand-up behaviors, curriculum learning, and manager-based
-          RL environments for legged and humanoid robots.
-        </p>
-
-        <p>
-          Beyond research, I have industry experience in manufacturing and
-          automation, including virtual commissioning, industrial simulation,
-          and control systems.
-        </p>
-
-        <p>
-          My interests include humanoid locomotion, robot learning,
-          simulation-to-real transfer, and building robust, field-ready robotic systems.
-        </p>
-      </div>
+  <!-- NAV -->
+  <nav>
+    <strong>Isaac Legene</strong>
+    <div>
+      <a href="#">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
     </div>
+  </nav>
 
-    <h2>Interests</h2>
-    <ul>
-      <li>Humanoid & legged robotics</li>
-      <li>Reinforcement learning for control</li>
-      <li>Simulation & sim-to-real</li>
-      <li>Robot learning systems</li>
-      <li>Autonomy & embodied AI</li>
-    </ul>
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <img src="images/headshot.JPG" alt="Isaac Legene">
 
-    <h2>Links</h2>
-    <ul>
-      <li><a href="https://github.com/Isaac-Legene" target="_blank">GitHub</a></li>
-    </ul>
+      <h1>Isaac Legene</h1>
 
-  </div>
+      <p>
+        Robotics Engineer focused on control, reinforcement learning,
+        and humanoid systems
+      </p>
+
+      <div class="icons">
+        <a href="https://github.com/Isaac-Legene" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fas fa-file-alt"></i></a>
+      </div>
+
+      <a class="resume-btn" href="#">Resume</a>
+    </div>
+  </section>
+
 </body>
 </html>
