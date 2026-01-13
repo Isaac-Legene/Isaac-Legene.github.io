@@ -290,6 +290,53 @@
       margin: 0 auto;
     }
 
+    .project-block {
+      max-width: 1100px;
+      margin: 22px auto 0;
+      padding: 22px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .project-block-title {
+      margin: 0 0 14px 0;
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .project-block-text h4 {
+      margin: 14px 0 8px 0;
+      font-size: 16px;
+      opacity: 0.95;
+    }
+
+    .project-block-text p {
+      margin: 0;
+      line-height: 1.65;
+      opacity: 0.92;
+    }
+
+    .project-block-text ul {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.75;
+      opacity: 0.92;
+    }
+
+    .project-block-text li {
+      margin: 6px 0;
+    }
+
+    .project-callout {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.25);
+      line-height: 1.6;
+    }
+
     @media (max-width: 900px) {
       .projects-grid {
         grid-template-columns: 1fr;
@@ -483,6 +530,39 @@
 
           <div class="proj-bottom">
             <img class="wide-img" src="portfolio-images/Rivian/image20.png" alt="VC supplier selection layout">
+          </div>
+        </section>
+
+        <section class="project-block">
+          <h3 class="project-block-title">Unity and RealVirtual.io</h3>
+
+          <div class="project-block-grid">
+            <div class="project-block-text">
+              <h4>About</h4>
+              <p>
+                This project evaluated Unity + the RealVirtual.io plugin as a lower-cost platform for Virtual
+                Commissioning, using the RR1 study as the initial test case.
+              </p>
+
+              <h4>Completed Tasks</h4>
+              <ul>
+                <li>Imported JT models</li>
+                <li>Built tooling/robot kinematics</li>
+                <li>Implemented valve/process sequence logic</li>
+                <li>Developed inverse kinematics for all robots</li>
+                <li>Created a reusable prefab library for models</li>
+                <li>Built a UI to load robot path-point files from Process Simulate</li>
+                <li>Linked RoboGuide to Unity</li>
+                <li>Developed signals + I/O mapping</li>
+                <li>Implemented first-person and floating camera views</li>
+                <li>Added PLC-driven signals to game objects</li>
+              </ul>
+
+              <div class="project-callout">
+                <strong>Cost savings:</strong> Achieved ~90% cost reduction by using Unity for Virtual
+                Commissioning, enabling more licenses to meet project demand (a current constraint).
+              </div>
+            </div>
           </div>
         </section>
 
