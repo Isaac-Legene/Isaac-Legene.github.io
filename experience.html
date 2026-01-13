@@ -205,9 +205,94 @@
       min-height: 220px;
     }
 
+    .proj {
+      margin: 40px 0 32px;
+    }
+
+    .proj-top {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .kicker {
+      opacity: 0.7;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .proj-text h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    .proj-text h3 {
+      font-size: 16px;
+      margin-top: 14px;
+      margin-bottom: 8px;
+      opacity: 0.95;
+    }
+
+    .proj-text p {
+      font-size: 15px;
+      line-height: 1.65;
+      opacity: 0.88;
+    }
+
+    .proj-text ul {
+      margin-top: 6px;
+      padding-left: 18px;
+    }
+
+    .proj-text li {
+      margin: 8px 0;
+      line-height: 1.5;
+      opacity: 0.9;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: #121214;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .proj-bottom {
+      margin-top: 18px;
+    }
+
+    .wide-img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      border-radius: 16px;
+      opacity: 0.85;
+    }
+
     @media (max-width: 900px) {
       .projects-grid {
         grid-template-columns: 1fr;
+      }
+
+      .proj-top {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-img {
+        height: 260px;
       }
     }
   </style>
@@ -322,12 +407,12 @@
           Tools: Unity · C#/.NET · C++ · Process Simulate ·  Allen Bradley PLCs · FANUC · Kawasaki · Roboguide · RealVirtual.io
         </p>
 
-        <section class="projects">
-          <h2 class="projects-title">Projects</h2>
-          <p class="projects-subtitle">RFM R1T framer tooling change</p>
+        <section class="proj">
+          <div class="proj-top">
+            <div class="proj-text glass">
+              <p class="kicker">Projects</p>
+              <h2>RFM R1T framer tooling change</h2>
 
-          <div class="projects-grid">
-            <div class="projects-textbox">
               <h3>Purpose</h3>
               <p>
                 The current End-of-Arm Tooling (EOAT) for Robots 40 RB 7 &amp; 8 cannot accurately control the
@@ -344,12 +429,14 @@
                 <li>Update robot paths and OLP’s to accommodate new tooling in simulation</li>
               </ul>
             </div>
-            <div class="projects-media">
-              <img src="portfolio-images/Rivian/image24.gif" alt="Rivian project image 24">
+
+            <div class="proj-visual">
+              <img class="hero-img" src="portfolio-images/Rivian/image24.gif" alt="R1T framer cell simulation view">
             </div>
-            <div class="projects-media-wide">
-              <img src="portfolio-images/Rivian/image22.png" alt="Rivian project image 22">
-            </div>
+          </div>
+
+          <div class="proj-bottom">
+            <img class="wide-img" src="portfolio-images/Rivian/image22.png" alt="Framer layout overview">
           </div>
         </section>
 
