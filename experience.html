@@ -108,9 +108,18 @@
 
     .project-body {
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 20px;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 26px;
+      align-items: start;
+      margin-top: 18px;
       margin-bottom: 18px;
+    }
+
+    .project-text {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 10px;
+      padding: 18px;
     }
 
     .project-bullets {
@@ -126,13 +135,42 @@
       opacity: 0.8;
     }
 
-    .featured video {
+    .project-text .tools {
+      margin-top: 14px;
+      font-size: 13px;
+      opacity: 0.65;
+    }
+
+    .project-visual .featured video,
+    .project-visual .featured img {
       width: 100%;
-      height: 320px;
-      object-fit: contain;
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1px solid rgba(255,255,255,0.12);
       background: #121214;
+      display: block;
+    }
+
+    .project.reverse .project-text {
+      order: 2;
+    }
+
+    .project.reverse .project-visual {
+      order: 1;
+    }
+
+    .project.no-featured .project-body {
+      grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 900px) {
+      .project-body {
+        grid-template-columns: 1fr;
+      }
+
+      .project.reverse .project-text,
+      .project.reverse .project-visual {
+        order: initial;
+      }
     }
 
     .gallery {
@@ -185,26 +223,30 @@
         </p>
 
         <div class="project-body">
-          <ul class="project-bullets">
-            <li>Trained and tuned reward-based reinforcement learning policies in Isaac Lab</li>
-            <li>Developed distilled student policies for efficient deployment</li>
-            <li>Integrated locomotion and manipulation behaviors for whole-body tasks</li>
-            <li>Performed sim-to-sim validation prior to hardware testing</li>
-            <li>Participated in real-robot testing for locomotion and arm policies</li>
-          </ul>
-          <p class="tools">
-            Tools: Isaac Lab · MuJoCo · Python · Linux · Sim-to-Real · Booster T1 · G1 Unitree
-          </p>
+          <div class="project-text">
+            <ul class="project-bullets">
+              <li>Trained and tuned reward-based reinforcement learning policies in Isaac Lab</li>
+              <li>Developed distilled student policies for efficient deployment</li>
+              <li>Integrated locomotion and manipulation behaviors for whole-body tasks</li>
+              <li>Performed sim-to-sim validation prior to hardware testing</li>
+              <li>Participated in real-robot testing for locomotion and arm policies</li>
+            </ul>
+            <p class="tools">
+              Tools: Isaac Lab · MuJoCo · Python · Linux · Sim-to-Real · Booster T1 · G1 Unitree
+            </p>
+          </div>
 
-          <div class="featured">
-            <video
-              src="portfolio-images/Lidar/Media3.mp4"
-              controls
-              autoplay
-              muted
-              loop
-              playsinline>
-            </video>
+          <div class="project-visual">
+            <div class="featured">
+              <video
+                src="portfolio-images/Lidar/Media3.mp4"
+                controls
+                autoplay
+                muted
+                loop
+                playsinline>
+              </video>
+            </div>
           </div>
         </div>
 
@@ -239,29 +281,32 @@
         </p>
 
         <div class="project-body">
-          <ul class="project-bullets">
-            <li>Supported simulation and virtual commissioning design reviews for R2 Body-in-White</li>
-            <li>Developed full production-line simulations for upcoming builds</li>
-            <li>Built reusable industrial robot prefabs and inverse kinematics tooling for Unity workflows</li>
-            <li>Created coordinate-frame conversion tooling to import robot path points from Process Simulate</li>
-            <li>Integrated controller-side validation via FANUC Roboguide / digital-twin style connections (when applicable)</li>
-          </ul>
+          <div class="project-text">
+            <ul class="project-bullets">
+              <li>Supported simulation and virtual commissioning design reviews for R2 Body-in-White</li>
+              <li>Developed full production-line simulations for upcoming builds</li>
+              <li>Built reusable industrial robot prefabs and inverse kinematics tooling for Unity workflows</li>
+              <li>Created coordinate-frame conversion tooling to import robot path points from Process Simulate</li>
+              <li>Integrated controller-side validation via FANUC Roboguide / digital-twin style connections (when applicable)</li>
+            </ul>
+            <p class="tools">
+              Tools: Unity · C#/.NET · C++ · Process Simulate · Allen Bradley PLCs · FANUC · Kawasaki · Roboguide · RealVirtual.io
+            </p>
+          </div>
 
-          <div class="featured">
-            <video
-              src="portfolio-images/Rivian/4177324922407225407front_door_install.MP4"
-              controls
-              autoplay
-              muted
-              loop
-              playsinline>
-            </video>
+          <div class="project-visual">
+            <div class="featured">
+              <video
+                src="portfolio-images/Rivian/4177324922407225407front_door_install.MP4"
+                controls
+                autoplay
+                muted
+                loop
+                playsinline>
+              </video>
+            </div>
           </div>
         </div>
-
-        <p class="tools">
-          Tools: Unity · C#/.NET · C++ · Process Simulate ·  Allen Bradley PLCs · FANUC · Kawasaki · Roboguide · RealVirtual.io
-        </p>
 
         <div class="gallery">
           <video src="portfolio-images/Rivian/474024701161989248movie_hang_plc1_15.MP4" controls muted loop playsinline></video>
@@ -275,7 +320,7 @@
     </div>
 
     <div class="section">
-      <div class="project" id="tesla">
+      <div class="project no-featured" id="tesla">
         <div class="project-header">
           <h2 class="project-title">
             Tesla
@@ -292,20 +337,19 @@
         </p>
 
         <div class="project-body">
-          <ul class="project-bullets">
-            <li>Oversaw and supported production equipment integration workstreams in the Body-in-White shop</li>
-            <li>Designed and implemented HMIs to improve troubleshooting and reduce downtime</li>
-            <li>Implemented devices and PLC logic integrated into live production processes</li>
-            <li>Supported commissioning activities including robot/tooling checks and production ramp support</li>
-            <li>Completed hands-on training in FANUC/KUKA (101–301), AC/DC circuits, pneumatics, and PLC programming</li>
-          </ul>
-
-          <div></div>
+          <div class="project-text">
+            <ul class="project-bullets">
+              <li>Oversaw and supported production equipment integration workstreams in the Body-in-White shop</li>
+              <li>Designed and implemented HMIs to improve troubleshooting and reduce downtime</li>
+              <li>Implemented devices and PLC logic integrated into live production processes</li>
+              <li>Supported commissioning activities including robot/tooling checks and production ramp support</li>
+              <li>Completed hands-on training in FANUC/KUKA (101–301), AC/DC circuits, pneumatics, and PLC programming</li>
+            </ul>
+            <p class="tools">
+              Tools: PLCs · HMIs · Production Automation · FANUC · KUKA · Industrial Networking · Troubleshooting
+            </p>
+          </div>
         </div>
-
-        <p class="tools">
-          Tools: PLCs · HMIs · Production Automation · FANUC · KUKA · Industrial Networking · Troubleshooting
-        </p>
 
         <div class="gallery">
           <img src="portfolio-images/Tesla/Image%2010-1-24%20at%203.26%E2%80%AFPM.JPG" alt="Tesla image 10-1-24">
