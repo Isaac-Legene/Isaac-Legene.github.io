@@ -81,8 +81,16 @@
       margin-bottom: 12px;
     }
 
-    .project-header h2 {
+    .project-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-size: 24px;
+    }
+
+    .project-logo {
+      height: 26px;
+      width: auto;
     }
 
     .project-role {
@@ -161,7 +169,10 @@
     <div class="section">
       <div class="project" id="lidar">
         <div class="project-header">
-          <h2>Georgia Tech – LIDAR Lab</h2>
+          <h2 class="project-title">
+            Georgia Tech – LIDAR Lab
+            <img class="project-logo" src="images/gt_logo.png" alt="Georgia Tech logo">
+          </h2>
           <div class="project-role">
             Graduate Researcher · Humanoid Locomotion &amp; Manipulation
           </div>
@@ -170,7 +181,7 @@
         <p class="project-lede">
           Research focused on training and validating humanoid locomotion and manipulation
           policies using reinforcement learning, policy distillation, and Sim-to-Real workflows.
-          Our goal is to enable robust and adaptable robot behaviors in real-world task completion.
+          Our goal is to enable robust and adaptable robot behaviors in real-world task.
         </p>
 
         <div class="project-body">
@@ -212,7 +223,10 @@
     <div class="section">
       <div class="project" id="rivian">
         <div class="project-header">
-          <h2>Rivian</h2>
+          <h2 class="project-title">
+            Rivian
+            <img class="project-logo" src="images/RIVN.D-a4e50470.png" alt="Rivian logo">
+          </h2>
           <div class="project-role">
             Automation Controls Engineering Intern · Virtual Commissioning &amp; Simulation
           </div>
@@ -263,7 +277,10 @@
     <div class="section">
       <div class="project" id="tesla">
         <div class="project-header">
-          <h2>Tesla</h2>
+          <h2 class="project-title">
+            Tesla
+            <img class="project-logo" src="images/tesla.jpg" alt="Tesla logo">
+          </h2>
           <div class="project-role">
             Automation Controls Engineering Intern · Body-in-White Equipment Integration (Models 3 &amp; Y)
           </div>
