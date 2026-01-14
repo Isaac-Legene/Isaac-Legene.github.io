@@ -382,13 +382,19 @@
       font-weight: 800;
     }
 
-    .project-block-text h4 {
+    .project-block-about {
+      margin-bottom: 16px;
+    }
+
+    .project-block-text h4,
+    .project-block-about h4 {
       margin: 14px 0 8px 0;
       font-size: 16px;
       opacity: 0.95;
     }
 
-    .project-block-text p {
+    .project-block-text p,
+    .project-block-about p {
       margin: 0;
       line-height: 1.65;
       opacity: 0.92;
@@ -414,6 +420,22 @@
       line-height: 1.6;
     }
 
+    .project-block-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .project-block-media video {
+      width: 100%;
+      height: 260px;
+      object-fit: contain;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #121214;
+    }
+
     @media (max-width: 900px) {
       .projects-grid {
         grid-template-columns: 1fr;
@@ -429,6 +451,14 @@
 
       .tesla-training {
         grid-template-columns: 1fr;
+      }
+
+      .project-block-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-block-media video {
+        height: 220px;
       }
     }
   </style>
@@ -589,14 +619,16 @@
         <section class="project-block">
           <h3 class="project-block-title">Unity and RealVirtual.io</h3>
 
+          <div class="project-block-about">
+            <h4>About</h4>
+            <p>
+              This project evaluated Unity + the RealVirtual.io plugin as a lower-cost platform for Virtual
+              Commissioning, using the RR1 study as the initial test case.
+            </p>
+          </div>
+
           <div class="project-block-grid">
             <div class="project-block-text">
-              <h4>About</h4>
-              <p>
-                This project evaluated Unity + the RealVirtual.io plugin as a lower-cost platform for Virtual
-                Commissioning, using the RR1 study as the initial test case.
-              </p>
-
               <h4>Completed Tasks</h4>
               <ul>
                 <li>Imported JT models</li>
@@ -615,6 +647,10 @@
                 <strong>Cost savings:</strong> Achieved ~90% cost reduction by using Unity for Virtual
                 Commissioning, enabling more licenses to meet project demand (a current constraint).
               </div>
+            </div>
+
+            <div class="project-block-media">
+              <video src="portfolio-images/Rivian/Realvirtual.io-fix.mp4" controls muted loop playsinline autoplay></video>
             </div>
           </div>
         </section>
