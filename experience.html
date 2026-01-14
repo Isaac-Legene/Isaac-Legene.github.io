@@ -152,6 +152,11 @@
       background: transparent;
     }
 
+    .tesla-gallery img,
+    .tesla-gallery video {
+      object-fit: cover;
+    }
+
     .video-row {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -845,7 +850,7 @@
           </div>
         </div>
 
-        <div class="gallery">
+        <div class="gallery tesla-gallery">
           <img src="portfolio-images/Tesla/IMG_0433.jpeg" alt="Tesla image 0433">
           <img src="portfolio-images/Tesla/IMG_5292.jpeg" alt="Tesla image 5292">
           <video src="portfolio-images/Tesla/IMG_5414.MOV" autoplay muted loop playsinline controlslist="nodownload noplaybackrate nofullscreen noremoteplayback" disablepictureinpicture></video>
