@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MineTrack - Machine Learning Project</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <style>
+        .portfolio-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.6);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            color: white;
+        }
+        .portfolio-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .portfolio-nav-item,
+        .portfolio-nav-dropbtn {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font: inherit;
+        }
+        .portfolio-nav-dropdown {
+            position: relative;
+        }
+        .portfolio-nav-dropdown-content {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            min-width: 220px;
+            padding: 10px 0;
+            background: rgba(10, 10, 13, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+            flex-direction: column;
+        }
+        .portfolio-nav-dropdown-content a {
+            display: block;
+            padding: 10px 14px;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        .portfolio-nav-dropdown-content a:hover,
+        .portfolio-nav-item:hover,
+        .portfolio-nav-dropbtn:hover {
+            opacity: 0.8;
+        }
+        .portfolio-nav-dropdown:hover .portfolio-nav-dropdown-content,
+        .portfolio-nav-dropdown:focus-within .portfolio-nav-dropdown-content,
+        .portfolio-nav-dropdown.open .portfolio-nav-dropdown-content {
+            display: flex;
+        }
+        main {
+            margin-top: 68px;
+        }
+    </style>
+
+    <nav class="portfolio-nav">
+        <strong>Isaac Legene</strong>
+        <div class="portfolio-nav-links">
+            <a class="portfolio-nav-item" href="../../index.html">Home</a>
+            <a class="portfolio-nav-item" href="../../experience.html">Experience</a>
+            <div class="portfolio-nav-dropdown">
+                <button class="portfolio-nav-dropbtn" type="button">Class Projects</button>
+                <div class="portfolio-nav-dropdown-content">
+                    <a href="../../class-projects.html">Overview</a>
+                    <a href="../../class-projects/cs8803-drl/index.html">Deep Reinforcement Learning CS 8803</a>
+                    <a href="../../class-projects/cs7641-ml/index.html">Machine Learning CS 7641</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="landing-container">
+            <section class="hero-landing">
+                <div class="hero-content">
+                    <img src="media/images/minetrack_logo.png" alt="MineTrack" class="hero-logo">
+                    <p class="hero-subtitle">Machine Learning for Visual State Estimation from Minecraft Gameplay</p>
+                    <p class="hero-description">CS 7641 - Spring 2026 Group 13</p>
+                </div>
+
+                <div class="visual-showcase">
+                    <video class="showcase-gif" autoplay muted loop playsinline aria-label="Model evaluation side-by-side comparison in Minecraft">
+                        <source src="media/images/videos/short_run_eval_mlp_side_by_side_web.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="https://github.gatech.edu/omediratta3/MineTrack" class="btn btn-github" id="github-btn">
+                        <svg class="github-icon" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                    <a href="overview.html" class="btn btn-primary">
+                        Explore Project
+                        <svg class="arrow-icon" viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor" d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 MineTrack Project - CS 7641 Machine Learning</p>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.portfolio-nav-dropdown').forEach((dropdown) => {
+            const button = dropdown.querySelector('.portfolio-nav-dropbtn');
+            button.addEventListener('click', (event) => {
+                event.stopPropagation();
+                dropdown.classList.toggle('open');
+            });
+        });
+
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.portfolio-nav-dropdown.open').forEach((dropdown) => {
+                dropdown.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>

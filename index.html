@@ -29,11 +29,68 @@
       z-index: 10;
     }
 
-    nav a {
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-item,
+    .nav-dropbtn {
       color: white;
       text-decoration: none;
-      margin-left: 20px;
       font-size: 14px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-content {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      min-width: 180px;
+      padding: 10px 0;
+      background: rgba(10, 10, 13, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .nav-dropdown-content a {
+      display: block;
+      padding: 10px 14px;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .nav-dropdown-content a:hover,
+    .nav-item:hover,
+    .nav-dropbtn:hover {
+      opacity: 0.8;
+    }
+
+    .nav-dropdown:hover .nav-dropdown-content,
+    .nav-dropdown:focus-within .nav-dropdown-content {
+      display: flex;
+    }
+
+    .nav-dropdown.open .nav-dropdown-content {
+      display: flex;
+    }
+
+    .nav-dropdown.open .nav-dropdown-content {
+      display: flex;
     }
 
     /* HERO */
@@ -132,17 +189,57 @@
   <!-- NAV -->
   <nav>
     <strong>Isaac Legene</strong>
-    <div>
-      <a href="index.html">Home</a>
-      <a href="experience.html">Experience</a>
+    <div class="nav-links">
+      <a class="nav-item" href="index.html">Home</a>
+      <a class="nav-item" href="experience.html">Experience</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropbtn" type="button">Class Projects</button>
+        <div class="nav-dropdown-content">
+          <a href="class-projects.html">Overview</a>
+          <a href="class-projects/cs8803-drl/index.html">Deep Reinforcement Learning CS 8803</a>
+          <a href="class-projects/cs7641-ml/index.html">Machine Learning CS 7641</a>
+        </div>
+      </div>
     </div>
   </nav>
+
+  <script>
+    document.querySelectorAll('.nav-dropdown').forEach((dropdown) => {
+      const button = dropdown.querySelector('.nav-dropbtn');
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        dropdown.classList.toggle('open');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.nav-dropdown.open').forEach((dropdown) => {
+        dropdown.classList.remove('open');
+      });
+    });
+  </script>
 
   <!-- HERO -->
   <section class="hero">
     <div>
       <img src="images/headshotnobackground.png" alt="Isaac Legene">
 
+
+  <script>
+    document.querySelectorAll('.nav-dropdown').forEach((dropdown) => {
+      const button = dropdown.querySelector('.nav-dropbtn');
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        dropdown.classList.toggle('open');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.nav-dropdown.open').forEach((dropdown) => {
+        dropdown.classList.remove('open');
+      });
+    });
+  </script>
       <h1>Isaac Legene</h1>
 
       <p class="subtitle">
@@ -160,9 +257,10 @@
         </a>
       </div>
 
-      <a class="resume-btn" href="IsaacLegene_Resume_2_1_26.pdf" target="_blank">Resume</a>
+      <a class="resume-btn" href="IaacLegene-3-1-25.pdf" target="_blank">Resume</a>
     </div>
   </section>
 
 </body>
 </html>
+

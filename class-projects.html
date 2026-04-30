@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Isaac Legene - Class Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: white;
+      background: #0b0b0c;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-item,
+    .nav-dropbtn {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-content {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      min-width: 180px;
+      padding: 10px 0;
+      background: rgba(10, 10, 13, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .nav-dropdown-content a {
+      display: block;
+      padding: 10px 14px;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .nav-dropdown-content a:hover,
+    .nav-item:hover,
+    .nav-dropbtn:hover {
+      opacity: 0.8;
+    }
+
+    .nav-dropdown:hover .nav-dropdown-content,
+    .nav-dropdown:focus-within .nav-dropdown-content {
+      display: flex;
+    }
+
+    .nav-dropdown.open .nav-dropdown-content {
+      display: flex;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 120px auto 60px;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .lede {
+      opacity: 0.8;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .project-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .project-card {
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .project-card h2 {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .project-card p {
+      opacity: 0.85;
+      line-height: 1.6;
+    }
+
+    .project-card ul {
+      margin: 12px 0 0 18px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .project-card a {
+      color: #9ecbff;
+      text-decoration: none;
+    }
+
+    .project-card a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <strong>Isaac Legene</strong>
+    <div class="nav-links">
+      <a class="nav-item" href="index.html">Home</a>
+      <a class="nav-item" href="experience.html">Experience</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropbtn" type="button">Class Projects</button>
+        <div class="nav-dropdown-content">
+          <a href="class-projects.html">Overview</a>
+          <a href="class-projects/cs8803-drl/index.html">Deep Reinforcement Learning CS 8803</a>
+          <a href="class-projects/cs7641-ml/index.html">Machine Learning CS 7641</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    document.querySelectorAll('.nav-dropdown').forEach((dropdown) => {
+      const button = dropdown.querySelector('.nav-dropbtn');
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        dropdown.classList.toggle('open');
+      });
+    });
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.nav-dropdown.open').forEach((dropdown) => {
+        dropdown.classList.remove('open');
+      });
+    });
+  </script>
+
+  <main class="page">
+    <h1>Class Projects</h1>
+    <p class="lede">Use this page as the landing spot for course work. Add new project pages from the dropdown and link them here as you build them out.</p>
+
+    <div class="project-list">
+      <section class="project-card">
+        <h2><a href="class-projects/cs8803-drl/index.html">Deep Reinforcement Learning CS 8803</a></h2>
+        <p>Standalone final report for the CS 8803 deep reinforcement learning project.</p>
+        <p>Open the final report from the class projects dropdown.</p>
+        <p>Add more project cards here as you create them.</p>
+      </section>
+      <section class="project-card">
+        <h2><a href="class-projects/cs7641-ml/index.html">Machine Learning CS 7641</a></h2>
+        <p>Course project page for CS 7641 Machine Learning.</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

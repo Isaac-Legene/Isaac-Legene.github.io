@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview - MineTrack</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="report-page">
+
+    <nav>
+        <div class="container">
+            <a href="index.html" class="nav-brand">MineTrack</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="overview.html" class="active">Overview</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="report-shell">
+            <aside class="report-sidebar fade-in">
+                <div data-scrollspy></div>
+            </aside>
+
+            <div class="report-main" data-report-content>
+                <section class="report-page-title fade-in">
+                    <h1>Overview</h1>
+                </section>
+
+                <section class="content-panel fade-in" id="introduction-background" data-spy-section data-nav-label="Introduction">
+                    <h2>Introduction &amp; Background</h2>
+
+                    <p>
+                        Visual Odometry (VO) estimates an agent's trajectory from image sequences by predicting frame-to-frame motion and composing those local transforms over time. MineTrack studies this problem in Minecraft, using synchronized gameplay frames and pose logs to train models that infer camera motion from RGB input alone.
+                    </p>
+
+                    <h4>In the Literature</h4>
+                    <p>
+                        Classical VO systems estimate motion by tracking visual features across frames and refining the resulting trajectory through geometric optimization <span class="cite" data-ref="nister2004"></span>, <span class="cite" data-ref="scaramuzza2011"></span>. Systems such as ORB-SLAM show that feature tracking, mapping, relocalization, and loop closure can support robust real-time monocular localization <span class="cite" data-ref="orbslam2015"></span>, but repeated textures, low-feature regions, lighting changes, and accumulated drift remain important failure modes.
+                    </p>
+                    <p>
+                        Standard benchmarks such as KITTI motivate evaluating VO at the trajectory level, not only through per-frame prediction loss <span class="cite" data-ref="kitti"></span>. Learning-based approaches, including DeepVO, instead learn motion-relevant visual representations directly from image streams <span class="cite" data-ref="deepvo2017"></span>. These methods are attractive for monocular RGB input, but surveys emphasize persistent challenges around scale ambiguity, drift, and generalization <span class="cite" data-ref="moratuwage2016"></span>, <span class="cite" data-ref="monocularsurvey2024"></span>. MineTrack follows this learning-based direction by training autoencoder representations and supervised pose regressors, then evaluating rollout behavior, endpoint error, path-length consistency, and translation error over time.
+                    </p>
+
+                    <h4>The Dataset</h4>
+                    <p>
+                        MineTrack includes a custom dataset collected with a Minecraft logging mod. Each run contains a time-ordered sequence of RGB frames and a synchronized transform log describing the player's camera pose as a 4&times;4 homogeneous matrix. These poses support both absolute trajectory visualization and ground-truth relative transforms between consecutive frames.
+                    </p>
+                    <p>
+                        The data is organized by run because VO is inherently temporal. During preprocessing, consecutive frames are paired as <em>I<sub>t</sub></em> and <em>I<sub>t+1</sub></em>, and their poses are converted into relative rotation and translation targets. The recordings span multiple terrain types and motion patterns, including forward motion, turning, curved paths, elevation changes, and still periods; held-out evaluation runs are kept separate so trajectory plots and videos measure generalization rather than memorization.
+                    </p>
+
+                    <figure class="report-figure report-figure-wide">
+                        <img src="media/images/final-report-figures/data_visual.png" alt="Overall MineTrack visual odometry pipeline" style="width: 80%; margin: 0 auto; display: block;">
+                        <figcaption>
+                            The dataset contains thousands of frame pairs from diverse terrains.
+                        </figcaption>
+                    </figure>
+
+                </section>
+
+                <section class="content-panel fade-in" id="problem-definition" data-spy-section data-nav-label="Problem Definition">
+                    <h2>Problem Definition</h2>
+                    <p>
+                        Reliable motion estimation from visual input is a core requirement for autonomous navigation. Visual Odometry estimates trajectory by estimating consecutive transforms between camera poses. MineTrack tackles learning-based visual odometry in a controlled 3D environment. Given two consecutive RGB frames from Minecraft, we aim to predict the relative motion of the agent between frames (translation and rotation). By composing predicted frame-to-frame transforms over time, we reconstruct the full trajectory and measure drift versus ground truth.
+                    </p>
+
+                    <h4>Motivation</h4>
+                    <p>
+                        Minecraft provides easier data collection and a more constrained environment than the real world, allowing for faster model development and testing. Models validated in Minecraft can later be transferred to photorealistic simulators with more realistic physics engines and sensor modules, with the longer-term goal of SLAM in real-world environments.
+                    </p>
+
+                    <h4>Research Question</h4>
+                    <p>
+                        Do self-supervised visual embeddings learn geometry-relevant features that improve downstream relative pose regression and reduce trajectory drift?
+                    </p>
+
+                    <h4>Objectives</h4>
+                    <ul>
+                        <li>Learn compact visual embeddings from Minecraft gameplay frames.</li>
+                        <li>Predict frame-to-frame motion and compose predictions into trajectories.</li>
+                        <li>Evaluate trajectory accuracy and drift versus ground truth across varied environments.</li>
+                    </ul>
+                </section>
+
+                <section class="content-panel fade-in" id="methods" data-spy-section data-nav-label="Methods">
+                    <h2>Methods</h2>
+                    <p>
+                        MineTrack uses a staged visual odometry pipeline that converts paired Minecraft frames into a predicted trajectory. Each training example begins with two temporally adjacent RGB frames and their synchronized camera poses. The frames provide the visual input, while the poses provide the ground-truth relative transform between the two time steps. The overall objective is to learn a model that can predict this frame-to-frame motion from images alone and then compose many local predictions into a full trajectory.
+                    </p>
+                    <p>
+                        The pipeline is organized around two connected learning stages. First, a self-supervised visual representation model learns compact features from paired frames. This stage is intended to preserve both scene appearance and local temporal change without requiring manual labels beyond the captured frames themselves. Second, a supervised pose regressor uses those learned visual features to estimate relative motion. Each predicted relative transform is represented as rotation and translation, converted into an SE(3) pose transform, and chained over time to produce a reconstructed path.
+                    </p>
+                    <p>
+                        Evaluation is performed at both the local and trajectory levels. Locally, we compare each predicted relative transform against the ground-truth transform between consecutive frames. At the trajectory level, we compose the predicted transforms across an entire run and compare the resulting path to the ground truth using rollout plots, endpoint error, translation error over time, and path-length consistency. This distinction is important because small per-frame translation errors can accumulate into large long-horizon drift.
+                    </p>
+
+                    <figure class="report-figure report-figure-wide">
+                        <img src="media/images/final-report-figures/overall_pipeline.webp" alt="Overall MineTrack visual odometry pipeline">
+                        <figcaption>
+                            Overall MineTrack pipeline. Self-supervised representation learning with the dual autoencoder feeds the supervised EncoderMLP pose regressor. Consecutive Minecraft frames are converted into visual features, used to predict relative SE(3) motion, and composed over time into a trajectory for comparison against ground truth.
+                        </figcaption>
+                    </figure>
+
+                    <h4>Data Preparation</h4>
+                    <p>
+                        The dataset is generated with a custom Minecraft logging mod that records RGB gameplay frames alongside synchronized pose data. During preprocessing, frames are organized into temporally adjacent pairs or short sequences. The corresponding poses are used to compute the ground-truth relative transform between frame <em>t</em> and frame <em>t+1</em>, which becomes the supervised target for pose regression. We also apply image augmentations such as brightness, contrast, saturation, hue, and blur changes when training visual representations; geometric image transformations are avoided because they would alter the visual odometry target.
+                    </p>
+
+                     <div class="figure-pair-grid figure-pair-separate-captions">
+                        <figure class="figure-cell">
+                            <img src="media/images/midterm-report-figures/edmond/aug_one.jpg" alt="Augmentation figure one">
+                            <figcaption>
+                                Left: Original, Right: Gaussian blur and minimal color jitter
+                            </figcaption>
+                        </figure>
+                        <figure class="figure-cell">
+                            <img src="media/images/midterm-report-figures/edmond/aug_two.jpg" alt="Augmentation figure two">
+                            <figcaption>
+                                Left: Original, Right: Gaussian blur, brightness increase, saturation change, and hue shift
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <h4>Dual Autoencoder Representation Learning</h4>
+                    <p>
+                        We evaluated autoencoder-based representation learning as the first stage of the pipeline. The ordinary autoencoder served as an initial baseline: it takes a single RGB frame, compresses it through a convolutional encoder, and reconstructs the same image. This helped establish whether self-supervised reconstruction could learn compact visual features from Minecraft observations. However, because single-image reconstruction does not directly require the latent space to preserve motion cues, we shifted our primary representation model to the dual autoencoder.
+                    </p>
+                    <p>
+                        The dual autoencoder receives two consecutive RGB frames, <em>I<sub>t</sub></em> and <em>I<sub>t+1</sub></em>, and concatenates them along the channel dimension to form a 6-channel input tensor of shape 6&times;256&times;256. This early-fusion input is passed through a five-block convolutional encoder. Each block uses a 4&times;4 convolution with stride 2 and padding 1, followed by batch normalization and a LeakyReLU activation. The spatial resolution is reduced from 256&times;256 to 8&times;8 while the channel count increases as 6 &rarr; 32 &rarr; 64 &rarr; 128 &rarr; 256 &rarr; 512.
+                    </p>
+                    <p>
+                        After the encoder, a 1&times;1 bottleneck convolution compresses the 512-channel feature map into a 64-channel spatial latent representation, producing a latent tensor of shape 64&times;8&times;8. This bottleneck is important because it preserves spatial structure while forcing the network to discard unnecessary pixel-level detail. A second 1&times;1 convolution expands the latent representation back to 512 channels before decoding.
+                    </p>
+                    <p>
+                        The model then branches into two decoder heads. Both decoders mirror the encoder using transposed convolutions to return to 3&times;256&times;256 output images. The image decoder reconstructs the first frame and uses a sigmoid output activation so pixel values remain in the normalized image range. The difference decoder reconstructs the image difference <em>I<sub>t+1</sub> - I<sub>t</sub></em> and uses a tanh activation because difference values can be positive or negative. During training, the image reconstruction objective combines SSIM and L1 loss, while the difference reconstruction uses L1 loss with a larger weight to emphasize motion-sensitive visual changes.
+                    </p>
+                    <figure class="report-figure report-figure-wide">
+                        <img src="media/images/final-report-figures/dual_autoencoder.webp" alt="Dual autoencoder architecture for paired-frame representation learning">
+                        <figcaption>
+                            Dual autoencoder architecture. Paired Minecraft frames are stacked into a 6-channel input, compressed into a 64&times;8&times;8 latent representation, then decoded into two targets: the first RGB frame and the frame difference <em>I<sub>t+1</sub> - I<sub>t</sub></em>.
+                        </figcaption>
+                    </figure>
+
+                    <h4>MLP Transform Regressor</h4>
+                    <p>
+                        The downstream supervised model is an EncoderMLP transform regressor. It takes the same pair of consecutive RGB frames used by the dual autoencoder and stacks them into a 6&times;256&times;256 input. The front end of the regressor matches the dual autoencoder encoder: five stride-2 convolutional blocks reduce the input to a 512&times;8&times;8 feature map, and a 1&times;1 bottleneck reduces this to a 64&times;8&times;8 latent feature map. In practice, the encoder and bottleneck weights are initialized from a trained dual autoencoder checkpoint so that supervised pose regression starts from a representation already shaped by reconstruction and frame-difference learning.
+                    </p>
+                    <p>
+                        After the transferred visual backbone, the regressor applies two additional spatial-reduction layers. The first 3&times;3 convolution uses stride 2 and padding 1 to map 64&times;8&times;8 features to 128&times;4&times;4 features. The second maps 128&times;4&times;4 features to 256&times;2&times;2. These layers use batch normalization, dropout, and ReLU activations. The final 256&times;2&times;2 tensor is flattened into a 1024-dimensional vector.
+                    </p>
+                    <p>
+                        The flattened vector is passed through a three-layer MLP head with dimensions 1024 &rarr; 512 &rarr; 256 &rarr; 9. Dropout and ReLU are applied between hidden layers. The 9-dimensional output represents the relative transform between the two frames: the first six values encode rotation using a 6D continuous rotation representation, and the final three values encode translation. The 6D rotation is converted into a valid rotation matrix using Gram-Schmidt orthogonalization, then combined with the translation vector to form a 4&times;4 SE(3) transform.
+                    </p>
+                    <p>
+                        To evaluate full trajectories, the model predicts relative transforms for each adjacent frame pair in a run and composes them over time starting from the first ground-truth pose. Earlier MLP experiments showed that yaw estimates could be reasonable while translation error accumulated over long rollouts. To address this, the most recent training objective adds translation-focused sequence terms in addition to per-step rotation and translation losses. These include multi-horizon rollout translation loss, endpoint translation loss, and path-length consistency loss, all intended to penalize small translation underestimates that compound into large trajectory drift.
+                    </p>
+                    <figure class="report-figure report-figure-wide">
+                        <img src="media/images/final-report-figures/encoder_mlp.webp" alt="EncoderMLP transform regressor architecture">
+                        <figcaption>
+                            EncoderMLP transform regressor architecture. Consecutive Minecraft frames are stacked into a 6-channel input, passed through the transferred encoder and spatial reduction layers, then mapped by an MLP pose head to a 9D relative pose representation for trajectory rollout.
+                        </figcaption>
+                    </figure>
+
+                    <h4>Temporal LSTM Transform Regressor</h4>
+                    <p>
+                        We also evaluate an EncoderLSTM regressor that extends the same transferred visual backbone to short temporal clips. Since our data is inherently sequential, we wanted to try implementing an LSTM for their ability to retain long-term and short-term relationships. We hypothesized that by allowing the network to learn the temporal dependencies between frames of gameplay, it would be able to better capture flow of gameplay thus making more accurate predictions.
+                    </p>
+                    <p>
+                        Given an input sequence of RGB frames, the model forms overlapping adjacent pairs (<em>I<sub>t</sub>, I<sub>t+1</sub></em>) and stacks each pair into a 6&times;256&times;256 tensor. Each pair is then encoded by the dual-autoencoder-derived convolutional front end, including the learned bottleneck representation, so the recurrent model receives compact motion-aware visual features rather than raw pixel sequences.
+                    </p>
+                    <p>
+                        After backbone encoding, the same two stride-2 spatial reduction convolutions used by the MLP baseline map each latent map from 64&times;8&times;8 to 128&times;4&times;4 and then to 256&times;2&times;2. Each reduced feature map is flattened into a 1024-dimensional vector, and the vectors from a clip are reshaped into a temporal sequence of shape <em>[batch, s-1, 1024]</em>. This sequence is processed by a two-layer LSTM with hidden size 1024, allowing the model to carry hidden and cell state forward across adjacent frame pairs and use short-horizon temporal context when predicting motion. When no initial state is supplied, the hidden and cell states are initialized to zero tensors at the start of the sequence.
+                    </p>
+                    <p>
+                        The LSTM output at each time step is passed through the same regression head used by the other temporal models (1024 &rarr; 512 &rarr; 256 &rarr; 9) with dropout and ReLU between hidden layers. As with the MLP regressor, the first six outputs represent rotation in a continuous 6D form and the last three represent translation. Rotation outputs are bounded with <em>tanh</em> before conversion to valid rotation matrices, and the predicted SE(3) transforms are composed over time to evaluate rollout behavior, endpoint drift, and accumulated translation error.
+                    </p>
+                    <figure class="report-figure report-figure-wide">
+                        <img src="media/images/final-report-figures/lstm.webp" alt="EncoderLSTM temporal transform regressor architecture">
+                        <figcaption>
+                            EncoderLSTM temporal transform regressor architecture. Adjacent frame-pair embeddings are reshaped into a temporal feature sequence, processed by a two-layer LSTM, and passed through a shared pose regressor for per-step 9D relative pose prediction.
+                        </figcaption>
+                    </figure>
+
+                    <h4>Temporal Transformer Transform Regressor</h4>
+                    <p>
+                        A major downside to the sequential nature of the Encoder-LSTM architecture was the inability to parallelize during training, leading to unreasonably long compute times. To address this while still maintaining the ability to model long-range temporal dependencies, we implemented our last model: the transformer encoder-based architecture. We speculated that we could utilize the self-attention mechanism in place of recurrence to compute dependencies simultaneously across the entire frame sequence.
+                    </p>
+                    <p>
+                        Given an input clip of RGB frames, the model forms overlapping adjacent pairs (<em>I<sub>t</sub>, I<sub>t+1</sub></em>) and stacks each pair into a 6&times;256&times;256 tensor. Each pair is encoded by the dual-autoencoder-derived convolutional front end, including the learned bottleneck representation, so the transformer receives motion-aware visual tokens instead of raw pixels.
+                    </p>
+                    <p>
+                        After backbone encoding, two stride-2 spatial reduction convolutions map each latent map to a compact 256&times;2&times;2 representation, which is flattened into a 1024-dimensional token per adjacent frame pair. Tokens are assembled into a temporal sequence of length <em>s-1</em> and augmented with a learned positional embedding. A multi-layer Transformer encoder (multi-head self-attention plus feed-forward blocks) then models temporal dependencies across the clip, allowing the regressor to use longer-horizon context rather than predicting each step independently.
+                    </p>
+                    <p>
+                        The transformer output at each token is passed through a shared MLP head (1024 &rarr; 512 &rarr; 256 &rarr; 9) to predict per-step relative pose. As with the MLP model, the first six outputs represent rotation in a continuous 6D form and the last three represent translation. Rotation outputs are bounded with <em>tanh</em> before conversion to valid rotation matrices, and the resulting SE(3) transforms are composed over time for trajectory rollout and evaluation.
+                    </p>
+                    <figure class="report-figure report-figure-wide">
+                        <img src="media/images/final-report-figures/encoder_transformer.webp" alt="EncoderTransformer temporal transform regressor architecture">
+                        <figcaption>
+                            EncoderTransformer temporal transform regressor architecture. Adjacent frame-pair embeddings are converted to temporal tokens, enriched with positional encoding, and processed by a transformer encoder before per-step 9D relative pose prediction.
+                        </figcaption>
+                    </figure>
+
+                    <p>
+                        *Portions of the architecture diagrams were generated with NN-SVG, including the overall pipeline figure, the dual autoencoder figure, the MLP regressor figure, and the transformer model figure <span class="cite" data-ref="nnsvg"></span>.
+                    </p>
+
+                </section>
+
+                <section class="content-panel fade-in" id="results-discussion" data-spy-section data-nav-label="Results & Discussion">
+                    <h2>Results &amp; Discussion</h2>
+
+                    <h4>Summary of Current Results</h4>
+                    <p>
+                        The final implementation produces reconstruction outputs, autoencoder and MLP training loss curves, transform-related error plots, and trajectory/yaw comparison plots across the representation, regression, and temporal models. These results show how reconstruction quality, latent usefulness, and motion prediction accuracy relate to one another.
+                    </p>
+
+                    <h4>Autoencoder Reconstruction Results</h4>
+                    <p>
+                        Reconstruction outputs provide a qualitative view of what information is retained in the learned latent space. The single-image autoencoder reconstructs one Minecraft frame, while the dual autoencoder reconstructs the first frame together with an image difference target.
+                    </p>
+                    <p>
+                        The single autoencoder produced recognizable but blurry results. The overall structure of the image is preserved but fine details are not present in the reconstruction. Mobs such as the strider and zombified piglin (present in the nether image) are reconstructed as blobs.
+                    </p>
+
+                    <div class="figure-pair-grid figure-pair-separate-captions">
+                        <figure class="figure-cell">
+                            <img src="media/images/final-report-figures/Results/Single_Autoencoder/results2.png" alt="Single autoencoder reconstruction result 2">
+                            <figcaption>
+                                Single autoencoder reconstruction result (Nether). Left: original image. Right: reconstructed image.
+                            </figcaption>
+                        </figure>
+                        <figure class="figure-cell">
+                            <img src="media/images/final-report-figures/Results/Single_Autoencoder/results3.png" alt="Single autoencoder reconstruction result 3">
+                            <figcaption>
+                                Single autoencoder reconstruction result (Plains). Left: original image. Right: reconstructed image.
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <p>
+                        The dual autoencoder produced more detailed results than the single autoencoder, likely due to the wider higher dimensionality (2048) of the dual autoencoder’s latent vector vs. the single autoencoder (1024) since it represents 2 images.
+                    </p>
+
+                    <figure class="report-figure">
+                        <div class="figure-pair-grid" style="width: 80%; margin: 0 auto;">
+                            <img src="media/images/final-report-figures/Results/Dual_Autoencoder/encoder_visualization.png" alt="Dual autoencoder reconstruction visualization 1">
+                            <img src="media/images/final-report-figures/Results/Dual_Autoencoder/encoder_visualization2.png" alt="Dual autoencoder reconstruction visualization 2">
+                        </div>
+                        <figcaption>
+                            Top left: image n. Top right: image n+1. Bottom left: reconstructed image n. Bottom right: reconstructed image difference.
+                        </figcaption>
+                    </figure>
+
+                    <h4>Training Loss Results</h4>
+                    <p>
+                        Training loss curves show how reconstruction and regression behavior evolve over time. The autoencoders trained more smoothly than the downstream regressor, while the MLP required additional tuning to avoid degenerate identity-transform predictions.
+                    </p>
+                    <p>
+                        In the final runs, the dual autoencoder converged fastest and most steadily: its combined loss drops sharply early in training and then flattens, which is what we want from the representation stage. The supervised regressors were more sensitive. The magnitude-loss version was useful for preventing identity-transform collapse, while the rollout-loss version trained more slowly because it was optimized for long-horizon consistency instead of only one-step fit.
+                    </p>
+
+                    <div class="figure-pair-grid figure-pair-separate-captions">
+                        <figure class="figure-cell">
+                            <img src="media/images/final-report-figures/Results/Dual_Autoencoder/losscurve_ojas.png" alt="Dual autoencoder combined loss">
+                            <figcaption>
+                                Dual autoencoder combined loss over 10 epochs. The curve falls quickly at the start and then levels off, showing stable convergence of the representation model.
+                            </figcaption>
+                        </figure>
+                        <figure class="figure-cell">
+                            <img src="media/images/final-report-figures/Results/MLP_Regressor_RolloutLoss/losscurve_ojas_60epoch.png" alt="Rollout-loss MLP training curve">
+                            <figcaption>
+                                Rollout-aware pose regressor training over 60 epochs. The longer schedule improves trajectory consistency, but it converges more gradually than the reconstruction model.
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <h4>Pose Regression Performance</h4>
+                    <p>
+                        The transform and rotation error plots compare predicted relative motion against ground truth and provide the clearest view of pose-regression performance. A final comparison should explain which representation worked best and why.
+                    </p>
+                    <p>
+                        The best final comparison comes from the trajectory plots rather than reconstruction alone. The magnitude-loss regressor tracks yaw reasonably well on shorter segments and was the first version that stopped collapsing to identity outputs, but the rollout-loss model gives the clearest long-horizon behavior. In the shown rollout, the endpoint error is 169.16 and the path ratio is 0.855, which is a stronger sign that the predicted path is staying closer to the ground truth over time.
+                    </p>
+                    <p>
+                        The main tradeoff is that better reconstruction does not automatically produce a better pose embedding. The dual autoencoder gives us a stable latent space, but the motion head only becomes useful when the loss function rewards translation and trajectory consistency, not just image reconstruction. That is why the more motion-aware regression losses outperform the simpler setup even though they are harder to optimize.
+                    </p>
+
+                    <div class="figure-pair-grid figure-pair-separate-captions">
+                        <figure class="figure-cell">
+                            <img src="media/images/final-report-figures/Results/MLP_Regressor_RolloutLoss/shortrun.png" alt="Magnitude-loss trajectory and yaw comparison">
+                            <figcaption>
+                                Rollout-loss regressor on a short run. Endpoint error = 17.99 and path ratio = 0.799. Overall trajectory is modestly close to ground truth and yaw tracking is strong.
+                            </figcaption>
+                        </figure>
+                        <figure class="figure-cell">
+                            <img src="media/images/final-report-figures/Results/MLP_Regressor_RolloutLoss/longrun.png" alt="Rollout-loss long-horizon trajectory and error comparison">
+                            <figcaption>
+                                Rollout-loss regressor on a long run. Endpoint error = 169.16 and path ratio = 0.855. Yaw tracking is improved, but with long term translation drift still present.
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <p>
+                        The MLP accurately captured rotation but struggled with translation accuracy. This is likely due to the MLP’s lack of memory, since it cannot learn momentum trends over time (consecutive frames tend to have similar transforms). The LSTM performed better on translation but introduced rotation noise, and the transformer struggled with translation and rotation. Both the LSTM and transformer were difficult to sufficiently train because of the high computational requirements of training sequential models. Vision transformer architectures are known to be particularly data- and training-hungry, so the sequential models likely might show better performance with more training time.
+                    </p>
+
+                    <div class="figure-pair-grid figure-pair-separate-captions" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                        <figure class="figure-cell" style="justify-self: center;">
+                            <img src="media/images/final-report-figures/Results/LSTM/10_epoch/topdown_yaw_epoch30.png" alt="LSTM topdown yaw 30 epoch" style="width: 70% !important; margin: 0 auto; display: block;">
+                            <figcaption>
+                                30 Epoch LSTM (Plains). Translation tracking is modest, but yaw tracking is weaker.
+                            </figcaption>
+                        </figure>
+                        <figure class="figure-cell" style="justify-self: center; margin-top: 6.5px;">
+                            <img src="media/images/final-report-figures/Results/MLP_Regressor_MagLoss/topdown_yaw_60epoch.png" alt="MLP topdown yaw 60 epoch" style="width: 100% !important; margin: 0 auto; display: block;">
+                            <figcaption>
+                                60 Epoch MLP (Plains). Yaw tracking is exceptional, and the overall path length is consistent, but translation drift accumulates.
+                            </figcaption>
+                        </figure>
+                        <figure class="figure-cell" style="justify-self: center;">
+                            <img src="media/images/final-report-figures/Results/Transformer/topdown_yaw_epoch30.png" alt="Transformer topdown yaw 30 epoch" style="width: 70% !important; margin: 0 auto; display: block;">
+                            <figcaption>
+                                30 Epoch Transformer (Plains). Neither translation nor yaw tracking is strong.
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <h4>Video Comparison: Plains Evaluation</h4>
+                    <video id="plainsVideo" width="100%" style="max-width: 800px; margin: 20px auto; display: block; border: 1px solid #ccc;" controls autoplay muted playsinline>
+                        <source src="media/images/videos/long_run_plains_eval_web.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p style="text-align: center; font-size: 0.9em; color: #666; margin-top: 10px;">
+                        Side-by-side comparison of MLP regressor predictions on plains terrain evaluation sequence.
+                    </p>
+
+                    <video id="plainsVideoWeb" width="100%" style="max-width: 800px; margin: 20px auto; display: block; border: 1px solid #ccc;" controls autoplay muted playsinline>
+                        <source src="media/images/videos/plains_eval_mlp_side_by_side_web_5x.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p style="text-align: center; font-size: 0.9em; color: #666; margin-top: 10px;">
+                        Translational-only tracking, with rotational motion intentionally omitted.
+                    </p>
+
+                    <h4>Interpretation and Limitations</h4>
+                    <p>
+                        The dual autoencoder gives the most stable latent features we tested, and when those features are paired with motion-aware loss terms the regressor produces the cleanest rollouts. Good pixel reconstruction helps, but reconstruction quality alone doesn't guarantee accurate pose estimates. The loss design (especially translation-focused, multi-horizon terms) matters a lot.                    </p>
+                    <p>
+                        Model behavior is mixed: the MLP captures yaw well on short runs but accumulates translation drift over long rollouts, which is an issue that all the regression models struggled with. The LSTM and transformer sometimes help long-horizon consistency, but need more data and running to beat the MLP reliably.
+                    </p>
+                    <p>
+                        The most important next step is to keep the motion-aware losses, extend the comparison to longer and more varied sequences, and continue testing temporal models such as the LSTM and transformer on the same rollout metrics. That would make it easier to separate representation quality from sequence modeling and to identify which part of the pipeline needs the most improvement. 
+                    </p>
+                    <p>
+                        In terms of the Transformer Encoder architecture, there are two main improvements that we are looking to make. First off, the positional encodings currently lack temporal information about their associated sequence. Transformers are permutation-invariant and rely on their positional encodings for learning temporal dependencies, compared to LSTMs which have an inherent inductive bias for temporal order. The sinusoidal embeddings serve no other purpose than being unique identifiers for sequence position. Additionally the positional encodings may have been applied to the wrong dimension of our input feature tensor.
+                    </p>
+                    <p>
+                        Finally, we are looking to completely overhaul the Transformer Encoder architecture. Currently we are using a transformer on the front end which receives compressed pairs of frames prior to any temporal reasoning. By doing this, we are throwing away a lot of spatial evidence the model could have used to better infer motion. Instead we are looking to implement a Vision Transformer on the backend, which is a far more common approach.
+                    </p>
+                </section>
+
+
+                <section class="content-panel fade-in" id="awards" data-spy-section data-nav-label="Awards">
+                    <h2>Awards</h2>
+                    <p>We opt in to the "Outstanding Project" award contest.</p>
+                </section>
+
+
+                <section class="content-panel fade-in" id="gantt-chart" data-spy-section data-nav-label="Gantt Chart">
+                    <h2>Gantt Chart</h2>
+                    <div class="gantt-card" data-gantt-card>
+                        <div class="gantt-card-header">
+                            <div>
+                                <p class="gantt-eyebrow">Spring 2026 timeline</p>
+                                <h3>MineTrack project plan</h3>
+                            </div>
+                            <a class="gantt-download" href="media/images/final-report-figures/MineTrack_GanttChart.xlsx" download>
+                                Download workbook
+                            </a>
+                        </div>
+
+                        <div class="gantt-legend" aria-label="Gantt chart legend">
+                            <span class="gantt-legend-item"><span class="gantt-swatch proposal"></span> Proposal</span>
+                            <span class="gantt-legend-item"><span class="gantt-swatch midterm"></span> Midterm</span>
+                            <span class="gantt-legend-item"><span class="gantt-swatch final"></span> Final</span>
+                        </div>
+
+                        <div class="gantt-track-shell" data-gantt-root></div>
+                    </div>
+                </section>
+
+                <section class="content-panel fade-in" id="contribution-table" data-spy-section data-nav-label="Contributions">
+                    <h2>Contribution Table</h2>
+                    <table aria-label="MineTrack contribution table derived from Gantt ownership">
+                        <thead>
+                            <tr>
+                                <th scope="col">Member</th>
+                                <th scope="col">Primary Contributions from Gantt Ownership</th>
+                                <th scope="col">Report / Project Deliverables</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ojas</td>
+                                <td>Introduction &amp; Background; GitHub Page; model design/selection planning (M1-M3).</td>
+                                <td>
+                                    <div><strong>Proposal:</strong> Introduction &amp; Background content for report/slides/video.</div>
+                                    <div><strong>Midterm:</strong> Model training workflow notebook and Methods/Results writeup.</div>
+                                    <div><strong>Final:</strong> Model implementation and training (Regression Models), GitHub Pages Website, Figures/Visualizations.</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Isaac</td>
+                                <td>Problem Definition; GitHub Page; M1/M2/M3 data cleaning; M1/M2/M3 data visualization.</td>
+                                <td>
+                                    <div><strong>Proposal:</strong> Problem Definition and motivation support in slides/video.</div>
+                                    <div><strong>Midterm:</strong> Quantitative metrics, model training, and data visualizations.</div>
+                                    <div><strong>Final:</strong> Website integration, awards/formatting support, and report assembly across milestones.</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Edmond</td>
+                                <td>Problem Definition; Methods; M1/M2/M3 feature reduction; M1/M2/M3 data visualization.</td>
+                                <td>
+                                    <div><strong>Proposal:</strong> motivation content and problem-definition slide support.</div>
+                                    <div><strong>Midterm:</strong> Data augmentation and Potential Dataset section.</div>
+                                    <div><strong>Final:</strong> Feature engineering/reduction, analysis visualizations, and contribution-table/Gantt-chart maintenance.</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Aaron</td>
+                                <td>Methods; Potential Dataset; Potential Results &amp; Discussion; model design/selection planning (M1-M3).</td>
+                                <td>
+                                    <div><strong>Proposal:</strong> Methods/results/impact content across report, slides, and video, plus proposal video editing.</div>
+                                    <div><strong>Midterm:</strong> Plains dataset collection, autoencoder/MLP implementation, and result visualizations.</div>
+                                    <div><strong>Final:</strong> LSTM + transformer refinement, final presentation slides (autoencoder + MLP), final report results.</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Auryn</td>
+                                <td>Methods; Potential Dataset; Potential Results &amp; Discussion; model design/selection planning (M1-M3).</td>
+                                <td>
+                                    <div><strong>Proposal:</strong> Dataset/methods/results content plus contribution-chart and documentation support.</div>
+                                    <div><strong>Midterm:</strong> Large-scale multi-biome dataset collection and README/data-collection-mod setup instructions.</div>
+                                    <div><strong>Final:</strong> LSTM and Transformer Encoder models, final presentation slides (LSTM + Transformer Encoder), final report methods refinement and limitations of Transformer Encoder architecture.</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>All Members (Team-Wide)</td>
+                                <td>Project Team Composition; Dataset Collection; Video Creation &amp; Recording; M1/M2/M3 implementation &amp; coding; results evaluation; Midterm Report; M1-M3 comparison; Final Report.</td>
+                                <td>
+                                    <div><strong>Proposal:</strong> team composition/planning deliverables and proposal media.</div>
+                                    <div><strong>Midterm:</strong> shared implementation, evaluation, and midterm report submission.</div>
+                                    <div><strong>Final:</strong> model-comparison synthesis, final report integration, and presentation/video deliverables.</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="content-panel fade-in" id="references" data-spy-section data-nav-label="References">
+                    <h2>References</h2>
+                    <ul id="bibliography-list" class="references-list"></ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 MineTrack Project - CS 7641 Machine Learning</p>
+        </div>
+    </footer>
+</body>
+</html>
