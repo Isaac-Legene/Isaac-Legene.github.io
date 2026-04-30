@@ -73,6 +73,26 @@
         main {
             margin-top: 68px;
         }
+        .minetrack-tabs {
+            max-width: 980px;
+            margin: 84px auto 0;
+            padding: 0 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .minetrack-tab {
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.22);
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            background: rgba(255,255,255,0.04);
+        }
+        .minetrack-tab.active {
+            background: rgba(255,255,255,0.18);
+        }
     </style>
 
     <nav class="portfolio-nav">
@@ -80,8 +100,9 @@
         <div class="portfolio-nav-links">
             <a class="portfolio-nav-item" href="../../index.html">Home</a>
             <a class="portfolio-nav-item" href="../../experience.html">Experience</a>
+            <a class="portfolio-nav-item" href="../../class-projects/lidar-lab-research/index.html">Research</a>
             <div class="portfolio-nav-dropdown">
-                <button class="portfolio-nav-dropbtn" type="button">Class Projects</button>
+                <button class="portfolio-nav-dropbtn" type="button">Projects</button>
                 <div class="portfolio-nav-dropdown-content">
                     <a href="../../class-projects.html">Overview</a>
                     <a href="../../class-projects/cs8803-drl/index.html">Deep Reinforcement Learning CS 8803</a>
@@ -90,6 +111,12 @@
             </div>
         </div>
     </nav>
+
+    <div class="minetrack-tabs">
+        <a class="minetrack-tab active" href="index.html">MineTrack Home</a>
+        <a class="minetrack-tab" href="overview.html">Overview</a>
+        <a class="minetrack-tab" href="../../class-projects.html">Portfolio</a>
+    </div>
 
     <main>
         <div class="landing-container">
@@ -147,3 +174,4 @@
     </script>
 </body>
 </html>
+

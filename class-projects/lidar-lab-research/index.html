@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lidar Lab - Research</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; color: #eef2f7; background: #0b0f16; }
+    nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.6); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-item, .nav-dropbtn { color: white; text-decoration: none; font-size: 14px; background: none; border: none; cursor: pointer; font: inherit; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-content { display: none; position: absolute; top: calc(100% + 10px); left: 0; min-width: 220px; padding: 10px 0; background: rgba(10, 10, 13, 0.96); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35); flex-direction: column; }
+    .nav-dropdown-content a { display: block; padding: 10px 14px; color: white; text-decoration: none; font-size: 13px; white-space: nowrap; }
+    .nav-dropdown:hover .nav-dropdown-content, .nav-dropdown:focus-within .nav-dropdown-content, .nav-dropdown.open .nav-dropdown-content { display: flex; }
+    .page { max-width: 1080px; margin: 110px auto 50px; padding: 0 20px; }
+    h1 { font-size: 38px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+    .title-logo { width: 40px; height: 40px; object-fit: contain; }
+    .lede { color: #b9c3d1; margin-bottom: 24px; line-height: 1.6; }
+    .meta { color: #9fb0c5; margin-bottom: 18px; }
+    .hero video { width: 100%; max-width: 520px; border-radius: 12px; border: 1px solid rgba(255,255,255,.12); }
+    .gallery { margin-top: 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 880px; }
+    .gallery video, .gallery img { width: 100%; border-radius: 10px; border: 1px solid rgba(255,255,255,.12); object-fit: contain; height: 170px; background: #070b11; }
+    .section { margin-top: 28px; padding: 0; background: transparent; border: 0; border-radius: 0; }
+    .section h2 { margin-bottom: 10px; font-size: 28px; }
+    .section p { color: #d8e1ec; line-height: 1.75; }
+    .section ul { margin-left: 20px; line-height: 1.7; }
+    .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; align-items: start; }
+    .after-split { margin-top: 10px; }
+    .inline-media { margin: 12px auto 0; max-width: 460px; }
+    .inline-media img, .inline-media video { width: 100%; border-radius: 10px; border: 1px solid rgba(255,255,255,.12); max-height: 210px; object-fit: contain; background: #070b11; }
+    .inline-two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px auto 0; max-width: 520px; }
+    .inline-two > * { display: block; width: 100%; border-radius: 10px; border: 1px solid rgba(255,255,255,.12); max-height: 170px; object-fit: contain; background: #070b11; }
+    .inline-two > *:last-child { margin-bottom: 0; }
+    @media (max-width: 900px) { .gallery { grid-template-columns: 1fr; } .gallery video, .gallery img { height: auto; } }
+    @media (max-width: 900px) { .inline-media, .inline-two { max-width: 100%; } .split { grid-template-columns: 1fr; } .inline-two { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <strong>Isaac Legene</strong>
+    <div class="nav-links">
+      <a class="nav-item" href="../../index.html">Home</a>
+      <a class="nav-item" href="../../experience.html">Experience</a>
+      <a class="nav-item" href="../../class-projects/lidar-lab-research/index.html">Research</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropbtn" type="button">Projects</button>
+        <div class="nav-dropdown-content">
+          <a href="../../class-projects.html">Overview</a>
+          <a href="../../class-projects/cs8803-drl/index.html">Deep Reinforcement Learning CS 8803</a>
+          <a href="../../class-projects/cs7641-ml/index.html">Machine Learning CS 7641</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page">
+    <h1>Georgia Tech - LiDAR Lab <img class="title-logo" src="../../images/gt_logo.png" alt="GT logo"></h1>
+    <p class="meta">Humanoid Loco-Manipulation Research</p>
+    <p class="meta">Georgia Tech LIDAR Lab · Graduate Researcher</p>
+    <p class="lede">My research focuses on enabling humanoid robots to perform reliable loco-manipulation in real-world environments. I am especially interested in tasks where a humanoid must coordinate locomotion, whole-body control, manipulation, and physical contact to interact and complete task in a world of variation. At the Georgia Tech LiDAR Lab, I have worked on humanoid robotics projects involving diffusion policies, reinforcement learning, tactile sensing, VR teleoperation, simulation, data collection, and hardware deployment. My work has been centered around humanoid platforms such as the Booster T1 and Unitree G1, using tools including Isaac Lab, Isaac Sim, MuJoCo, and VR-based data collection systems.</p>
+    <section class="section">
+      <h2>Diffusion Policy Fine-Tuning for Humanoid Loco-Manipulation</h2>
+      <div class="split">
+        <div>
+          <p>
+            One of the main projects I contributed to was Diffusion Policy Fine-Tuning for Humanoid Loco-Manipulation via Reinforcement Learning. This work addresses a key challenge in humanoid autonomy: diffusion policies can generate high-level plans from demonstrations, but those plans may not always match what the low-level whole-body controller can accurately execute. This mismatch can lead to tracking errors, distribution shift, and task failures during long-horizon loco-manipulation.
+          </p>
+          <p>
+            REFINE-DP solves this by using a hierarchical framework where a diffusion policy acts as the high-level planner and a reinforcement-learning controller handles low-level whole-body execution. The diffusion policy outputs task-relevant commands, such as base motion and hand poses, while the RL controller tracks those commands on the humanoid. The system is then fine-tuned with reinforcement learning so the planner and controller improve together.
+          </p>
+        </div>
+        <div class="inline-two">
+          <video src="media/20260206_204757-episode-0 - diffusion.mp4" autoplay muted loop playsinline controls></video>
+          <video src="media/20260206_223018-episode-0 - diffusion.mp4" autoplay muted loop playsinline controls></video>
+          <video src="media/3xHardwaretest - diffusion.mp4" autoplay muted loop playsinline controls></video>
+          <video src="media/Screencast from 01-30-2026 09_36_17 PM - diffusion.mp4" autoplay muted loop playsinline controls></video>
+        </div>
+      </div>
+      <div class="after-split">
+        <p>
+          My contributions began with learning and working inside the manager-based Isaac Lab training pipeline. I trained reinforcement learning locomotion policies, developed training architecture for policy distillation, pushed training jobs to PACE, worked in a shared Git repository, and analyzed training results. I also contributed to early VR teleoperation data collection, where demonstrations were collected for later simulation and policy training. Later, I developed a heuristic planner for the door-opening task. This planner acted as a high-level action planner that sent commands to the trained locomotion and manipulation policies. I helped build the task logic for pulling a door toward the robot, trained the environment, analyzed task success, supported hardware testing, and contributed to the paper and presentation.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Whole-Body Humanoid Manipulation with Tactile Sensing</h2>
+      <div class="split">
+        <div>
+          <p>
+            I also contributed to a project on whole-body humanoid manipulation using tactile sensing. This work focuses on the idea that humanoids should not rely only on vision and proprioception when completing contact-rich tasks. For large, bulky, or deformable objects, the robot often needs to use its chest, arms, forearms, and hands together, making distributed tactile feedback important for understanding contact and force across the body.
+          </p>
+          <p>
+            In this project, the Unitree G1 is equipped with large-area tactile sensors on the chest, forearms, and palms. These sensors provide contact information that is used by a diffusion-based policy to predict both end-effector motion and interaction forces. The system also uses a Whole-body Tactile Universal Manipulation Interface, or WT-UMI, to collect demonstrations that include operator motion, proprioception, and tactile images.
+          </p>
+          <p>
+            My main role in this project has been leading data collection. I have helped organize collection sessions, coordinate with other students, collect demonstrations, revise and clean data, and keep the dataset organized for the training pipeline. The tasks include yoga ball manipulation, bucket manipulation, pillow manipulation, and collaborative manipulation tasks such as moving tables and large pipes that require multiple operators.
+          </p>
+        </div>
+        <div class="inline-two">
+          <video src="media/1000037454 - tactile.mp4" autoplay muted loop playsinline controls></video>
+          <video src="media/IMG_2532 - tactile.MOV.tmp.mp4" autoplay muted loop playsinline controls></video>
+          <video src="media/Media1 - Tactile.mp4" autoplay muted loop playsinline controls></video>
+          <video src="media/robo - tactile.mp4" autoplay muted loop playsinline controls></video>
+          <video src="media/Screencast from 03-19-2026 04_10_16 PM - tactile.mp4" autoplay muted loop playsinline controls></video>
+          <img src="media/IMG_3504 - tactile.jpg" alt="Tactile data collection session">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Research Direction</h2>
+      <p>
+        Through these projects, I have gained experience across the full humanoid learning pipeline: building simulation environments, collecting demonstration data, training policies, analyzing results, testing on hardware, and contributing to research papers. Moving forward, I want to take more ownership of this full pipeline by developing policies that I can train, test, and deploy independently. My long-term research goal is to improve how humanoid robots perform real-world tasks.
+      </p>
+    </section>
+
+    <div class="gallery">
+      <img src="media/IMG_9804 - addtional.jpg" alt="Humanoid research direction and deployment context">
+      <img src="media/Picture1 - additional.jpg" alt="Research media 2">
+      <video src="media/Screencast from 01-30-2026 09_36_17 PM - diffusion.mp4" autoplay muted loop playsinline controls></video>
+      <video src="../../portfolio-images/Lidar/media2.mp4" autoplay muted loop playsinline controls></video>
+      <video src="../../portfolio-images/Lidar/trialx2.mp4" autoplay muted loop playsinline controls></video>
+      <video src="../../portfolio-images/Lidar/media4.mp4" autoplay muted loop playsinline controls></video>
+      <img src="../../portfolio-images/Lidar/image12.gif" alt="Lidar policy snapshot">
+      <img src="../../portfolio-images/Lidar/image13.gif" alt="Lidar manipulation sequence">
+      <img src="../../portfolio-images/Lidar/p3.jpg" alt="Hardware testing setup">
+    </div>
+  </main>
+
+  <script>
+    document.querySelectorAll('.nav-dropdown').forEach((dropdown) => {
+      const button = dropdown.querySelector('.nav-dropbtn');
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        dropdown.classList.toggle('open');
+      });
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.nav-dropdown.open').forEach((dropdown) => dropdown.classList.remove('open'));
+    });
+  </script>
+</body>
+</html>
+
