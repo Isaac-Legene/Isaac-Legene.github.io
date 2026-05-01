@@ -612,25 +612,6 @@
 
         <h2 id="results">Experimental Results</h2>
 
-        <h3>6.1 Training Curves</h3>
-        <div class="placeholder">
-            <strong>[PLACEHOLDER: Insert learning curves here]</strong><br>
-            Recommended plots:
-            <ul style="margin: 8px 0;">
-                <li>Episode Reward Mean vs. Training Steps (Baseline vs. Modified)</li>
-                <li>Episode Reward Mean vs. Wall-Clock Time</li>
-                <li>Win Rate vs. Training Steps</li>
-                <li>Goal Success Rate vs. Training Steps</li>
-            </ul>
-        </div>
-
-        <p><em>Expected findings:</em> The modified agent should show:</p>
-        <ul>
-            <li>Faster initial convergence (due to reward shaping)</li>
-            <li>Higher average rewards (due to intermediate rewards)</li>
-            <li>More stable training (potential-based shaping maintains monotonic convergence guarantees)</li>
-        </ul>
-
         <h3>6.2 Results</h3>
         <p>Evaluated a curriculum-learned agent with and without reward shaping across multiple matchups over 200 games each after 100 iterations:</p>
 

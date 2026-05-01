@@ -1,13 +1,31 @@
+import BlurText from '../components/BlurText'
+
 export default function HomePage() {
+  const titleWords = [
+    'masters in robotics',
+    'Controls Engineer',
+    'graduate Researcher',
+    'Reinforcement Learning',
+    'Computer Vision',
+    'Machine Learning'
+  ]
+
   return (
     <main className="page page-home">
       <section className="home-simple home-simple-grid reveal">
         <div>
           <p className="eyebrow">Isaac Legene</p>
-          <h1>Robotics Engineer</h1>
-          <p className="lede">
-            Humanoid learning, controls integration, and research across simulation and hardware.
-          </p>
+          <h1>
+            <BlurText
+              text="Robotics Engineer"
+              words={titleWords}
+              delay={110}
+              animateBy="letters"
+              direction="top"
+              hold={3800}
+              className="home-title-blur"
+            />
+          </h1>
           <div className="home-simple-links home-icon-links">
             <a className="button button-secondary icon-link" href="https://play.unity.com/en/user/5cc45f2f-e3e8-4f9f-82aa-cf762efe00d1" target="_blank" rel="noreferrer">
               <img src="/unity-logo-home.png" alt="" aria-hidden="true" />
