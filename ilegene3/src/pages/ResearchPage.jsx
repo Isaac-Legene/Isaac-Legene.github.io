@@ -50,7 +50,9 @@ export default function ResearchPage() {
     let cancelled = false
 
     async function loadLegacy() {
-      const resp = await fetch('/legacy/class-projects/lidar-lab-research/index.html')
+      const base = import.meta.env.BASE_URL || '/'
+      const resp = await fetch(`${base}legacy/class-projects/lidar-lab-research/index.html`)
+      if (!resp.ok) throw new Error(`Failed to load research legacy page: ${resp.status}`)
       const text = await resp.text()
       if (cancelled) return
       const parser = new DOMParser()
@@ -106,3 +108,7 @@ export default function ResearchPage() {
     </main>
   )
 }
+
+
+
+

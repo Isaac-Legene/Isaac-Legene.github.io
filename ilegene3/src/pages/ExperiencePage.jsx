@@ -54,7 +54,9 @@ export default function ExperiencePage() {
     let cancelled = false
 
     async function loadLegacy() {
-      const resp = await fetch('/legacy/experience.html')
+      const base = import.meta.env.BASE_URL || '/'
+      const resp = await fetch(`${base}legacy/experience.html`)
+      if (!resp.ok) throw new Error(`Failed to load experience legacy page: ${resp.status}`)
       const text = await resp.text()
       if (cancelled) return
       const parser = new DOMParser()
@@ -111,3 +113,7 @@ export default function ExperiencePage() {
     </main>
   )
 }
+
+
+
+
