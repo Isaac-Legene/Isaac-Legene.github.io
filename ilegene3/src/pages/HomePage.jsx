@@ -81,7 +81,7 @@ export default function HomePage() {
             </PremiumGlowButton>
           </div>
         </div>
-        <img src="/images/headshotnobackground.png" alt="Isaac Legene" className="home-simple-image" />
+        <img src="/legacy/images/headshotnobackground.png" alt="Isaac Legene" className="home-simple-image" />
       </section>
     </main>
   )

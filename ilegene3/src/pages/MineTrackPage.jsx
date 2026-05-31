@@ -126,6 +126,10 @@ function rewriteLegacyUrls(root) {
       element.setAttribute('href', '/projects/minetrack')
       return
     }
+    if (href.includes('class-projects.html')) {
+      element.setAttribute('href', '/projects')
+      return
+    }
 
     element.setAttribute('href', `/legacy/class-projects/cs7641-ml/${href}`)
   })

@@ -46,6 +46,26 @@ function resolveLegacyPath(basePath, rel) {
 }
 
 function rewriteLegacyUrls(root, basePath = LEGACY_BASE) {
+  root.querySelectorAll('[href]').forEach((el) => {
+    const href = el.getAttribute('href')
+    if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#') || href.startsWith('/')) {
+      return
+    }
+    if (href.includes('class-projects.html')) {
+      el.setAttribute('href', '/projects')
+      return
+    }
+    if (href.endsWith('index.html')) {
+      el.setAttribute('href', '/projects')
+      return
+    }
+    if (href.includes('../../experience.html')) {
+      el.setAttribute('href', '/experience')
+      return
+    }
+    el.setAttribute('href', resolveLegacyPath(basePath, href))
+  })
+
   root.querySelectorAll('[src]').forEach((el) => {
     const src = el.getAttribute('src')
     if (!src || src.startsWith('http') || src.startsWith('data:') || src.startsWith('/')) return

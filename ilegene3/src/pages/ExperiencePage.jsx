@@ -42,6 +42,10 @@ function rewriteLegacyUrls(root, basePath = '/legacy/') {
       el.setAttribute('href', '/research')
       return
     }
+    if (href.includes('class-projects.html')) {
+      el.setAttribute('href', '/projects')
+      return
+    }
 
     el.setAttribute('href', resolveLegacyPath(basePath, href))
   })

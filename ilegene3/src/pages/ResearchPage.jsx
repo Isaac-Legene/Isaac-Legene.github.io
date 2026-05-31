@@ -30,8 +30,20 @@ function rewriteLegacyUrls(root, basePath = '/legacy/class-projects/lidar-lab-re
     if (!href) return
     if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#') || href.startsWith('/')) return
 
-    if (href.endsWith('index.html')) {
+    if (href.includes('class-projects.html')) {
       el.setAttribute('href', '/projects')
+      return
+    }
+    if (href.includes('../../index.html') || href === 'index.html') {
+      el.setAttribute('href', '/')
+      return
+    }
+    if (href.includes('cs8803-drl')) {
+      el.setAttribute('href', '/projects/deep-rl')
+      return
+    }
+    if (href.includes('cs7641-ml')) {
+      el.setAttribute('href', '/projects/minetrack')
       return
     }
     if (href.includes('../../experience.html')) {
