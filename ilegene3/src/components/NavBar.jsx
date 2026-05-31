@@ -1,29 +1,81 @@
-import { NavLink, Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
+import { motion } from 'motion/react'
+import './NavBar.css'
+
+const NAV_ITEMS = [
+  { to: '/', label: 'Home', end: true },
+  { to: '/experience', label: 'Experience' },
+  { to: '/research', label: 'Research' },
+  { to: '/projects', label: 'Projects' },
+]
 
 export default function NavBar() {
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname])
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
   return (
-    <nav className="nav-shell">
-      <Link to="/" className="brand">
-        <span className="brand-mark">IL</span>
-        <span>
-          <strong>Isaac Legene</strong>
-          <small>AI & Robotics Portfolio</small>
-        </span>
-      </Link>
-      <div className="nav-links">
-        <NavLink to="/" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-          Home
-        </NavLink>
-        <NavLink to="/experience" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-          Experience
-        </NavLink>
-        <NavLink to="/research" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-          Research
-        </NavLink>
-        <NavLink to="/projects" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-          Projects
-        </NavLink>
+    <header className={`nav-shell${scrolled ? ' nav-shell--scrolled' : ''}${menuOpen ? ' nav-shell--open' : ''}`}>
+      <div className="nav-inner">
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-expanded={menuOpen}
+          aria-controls="site-nav"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <nav id="site-nav" className={`nav-links${menuOpen ? ' nav-links--open' : ''}`} aria-label="Main">
+          <div className="nav-pill-track">
+            {NAV_ITEMS.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.end}
+                className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {({ isActive }) => (
+                  <>
+                    {isActive ? (
+                      <motion.span
+                        layoutId="nav-active-pill"
+                        className="nav-indicator"
+                        transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+                      />
+                    ) : null}
+                    <span className="nav-link-label">{item.label}</span>
+                  </>
+                )}
+              </NavLink>
+            ))}
+          </div>
+        </nav>
       </div>
-    </nav>
+    </header>
   )
 }
