@@ -149,13 +149,31 @@
     }
 
     .project-title a:hover {
-      color: #79d8d3;
+      color: #2a7ab8;
       text-decoration: none;
     }
 
     .project-logo {
-      height: 20px;
+      height: 24px;
       width: auto;
+    }
+
+    .rivian-logo {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      flex-shrink: 0;
+      vertical-align: middle;
+      background-color: #ffcc00;
+      mask-image: url('images/RIVN.D-a4e50470.png');
+      mask-size: contain;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-image: url('images/RIVN.D-a4e50470.png');
+      -webkit-mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
     }
 
     .project-role {
@@ -673,7 +691,7 @@
         <div class="project-header">
           <h2 class="project-title">
             <a href="https://rivian.com/r1t" target="_blank" rel="noopener noreferrer">Rivian</a>
-            <img class="project-logo" src="images/RIVN.D-a4e50470.png" alt="Rivian logo">
+            <span class="project-logo rivian-logo" role="img" aria-label="Rivian logo"></span>
           </h2>
           <div class="project-role">
             Automation Controls Engineering Intern · Virtual Commissioning &amp; Simulation
