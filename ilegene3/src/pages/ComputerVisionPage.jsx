@@ -13,26 +13,6 @@ const TOC = [
   { id: 'project-4', label: 'P4 — Segmentation' },
   { id: 'project-5', label: 'P5 — PointNet' },
   { id: 'project-6', label: 'P6 — NeRF' },
-  { id: 'analysis', label: 'Analysis' },
-  { id: 'references', label: 'References' },
-]
-
-const HIGHLIGHTS = [
-  {
-    index: '(01)',
-    title: 'Hybrid images & convolution',
-    body: 'NumPy and PyTorch pipelines for filters, edge maps, and multi-scale hybrid perception.',
-  },
-  {
-    index: '(02)',
-    title: 'PSPNet on CamVid',
-    body: 'Semantic segmentation with 42.78% mIoU — pyramid pooling and dense prediction on driving scenes.',
-  },
-  {
-    index: '(03)',
-    title: '3D vision',
-    body: 'PointNet on Argoverse LiDAR sweeps and NeRF with positional encoding and volume rendering.',
-  },
 ]
 
 function resolveLegacyPath(basePath, rel) {
@@ -165,17 +145,7 @@ export default function ComputerVisionPage() {
         </aside>
       </header>
 
-      <section className="drl-highlights reveal delay-1" aria-label="Project highlights">
-        {HIGHLIGHTS.map((item) => (
-          <article key={item.index} className="drl-highlight">
-            <p className="drl-highlight-index">{item.index}</p>
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </article>
-        ))}
-      </section>
-
-      <section id="report" className="cv-report-full reveal delay-2">
+      <section id="report" className="cv-report-full reveal delay-1">
         {loading ? (
           <p className="drl-loading">Loading report…</p>
         ) : reportHtml ? (
