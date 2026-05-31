@@ -6,7 +6,7 @@
   <title>Lidar Lab - Research</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; color: #eef2f7; background: #0b0f16; }
+    body { font-family: Arial, sans-serif; color: #eef2f7; background: #000000; }
     nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.6); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
     .nav-links { display: flex; align-items: center; gap: 20px; }
     .nav-item, .nav-dropbtn { color: white; text-decoration: none; font-size: 14px; background: none; border: none; cursor: pointer; font: inherit; }
@@ -14,13 +14,14 @@
     .nav-dropdown-content { display: none; position: absolute; top: calc(100% + 10px); left: 0; min-width: 220px; padding: 10px 0; background: rgba(10, 10, 13, 0.96); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35); flex-direction: column; }
     .nav-dropdown-content a { display: block; padding: 10px 14px; color: white; text-decoration: none; font-size: 13px; white-space: nowrap; }
     .nav-dropdown:hover .nav-dropdown-content, .nav-dropdown:focus-within .nav-dropdown-content, .nav-dropdown.open .nav-dropdown-content { display: flex; }
-    .page { max-width: 1080px; margin: 110px auto 50px; padding: 0 20px; }
-    h1 { font-size: 38px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+    .page { max-width: 1320px; margin: 110px auto 50px; padding: 0 20px; }
+    h1 { font-size: 38px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
     h1 a { color: inherit; text-decoration: none; }
     h1 a:hover { color: #79d8d3; text-decoration: underline; }
-    .title-logo { width: 40px; height: 40px; object-fit: contain; }
+    .title-logo { width: 34px; height: 34px; object-fit: contain; }
     .lede { color: #b9c3d1; margin-bottom: 24px; line-height: 1.6; }
-    .meta { color: #9fb0c5; margin-bottom: 18px; }
+    .meta { color: #9fb0c5; margin: 0 0 8px 0; font-size: 19px; }
+    .meta + .meta { margin-top: 0; }
     .hero video { width: 100%; max-width: 520px; border-radius: 12px; border: 1px solid rgba(255,255,255,.12); }
     .gallery { margin-top: 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 880px; }
     .gallery video, .gallery img { width: 100%; border-radius: 10px; border: 1px solid rgba(255,255,255,.12); object-fit: contain; height: 170px; background: #070b11; }
@@ -34,9 +35,11 @@
     .section h2 a:hover {
       color: #79d8d3;
     }
-    .section p { color: #d8e1ec; line-height: 1.75; }
+    .section p { color: #d8e1ec; line-height: 1.75; font-size: 18px; }
     .section ul { margin-left: 20px; line-height: 1.7; }
-    .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; align-items: start; }
+    .split { display: block; }
+    .split > div:first-child { width: 100%; }
+    .split > div:last-child { margin-top: 14px; width: 100%; }
     .after-split { margin-top: 10px; }
     .inline-media { margin: 12px auto 0; max-width: 460px; }
     .inline-media img, .inline-media video { width: 100%; border-radius: 10px; border: 1px solid rgba(255,255,255,.12); max-height: 210px; object-fit: contain; background: #070b11; }
@@ -49,6 +52,7 @@
 </head>
 <body>
   <nav>
+  <script src="/legacy/embed-shell.js"></script>
     <strong>Isaac Legene</strong>
     <div class="nav-links">
       <a class="nav-item" href="../../index.html">Home</a>
@@ -67,7 +71,7 @@
 
   <main class="page">
     <h1><a href="https://lab-idar.gatech.edu/" target="_blank" rel="noopener noreferrer">Georgia Tech - LiDAR Lab</a> <img class="title-logo" src="../../images/gt_logo.png" alt="GT logo"></h1>
-    <p class="meta">Humanoid Loco-Manipulation Research</p>
+    <p class="meta">Whole body Humanoid Loco-Manipulation Research</p>
     <p class="meta">Georgia Tech LIDAR Lab · Graduate Researcher</p>
     <p class="lede">My research focuses on enabling humanoid robots to perform reliable loco-manipulation in real-world environments. I am especially interested in tasks where a humanoid must coordinate locomotion, whole-body control, manipulation, and physical contact to interact and complete task in a world of variation. At the Georgia Tech LiDAR Lab, I have worked on humanoid robotics projects involving diffusion policies, reinforcement learning, tactile sensing, VR teleoperation, simulation, data collection, and hardware deployment. My work has been centered around humanoid platforms such as the Booster T1 and Unitree G1, using tools including Isaac Lab, Isaac Sim, MuJoCo, and VR-based data collection systems.</p>
     <section class="section">
@@ -154,4 +158,3 @@
   </script>
 </body>
 </html>
-
