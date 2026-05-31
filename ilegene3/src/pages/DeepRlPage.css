@@ -346,29 +346,56 @@
   color: var(--accent-2);
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
   .drl-highlights {
     grid-template-columns: 1fr;
   }
 
   .drl-report-shell {
     grid-template-columns: 1fr;
+    gap: clamp(20px, 4vw, 32px);
+    max-width: 100%;
   }
 
   .drl-toc {
     position: static;
-    padding: 0 0 8px;
+    top: auto;
+    width: 100%;
+    max-width: none;
+    margin: 0 0 clamp(8px, 2vw, 12px);
+    padding: 0 0 clamp(16px, 3vw, 20px);
     border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    z-index: 0;
   }
 
   .drl-toc nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 16px;
   }
+
+  .deep-rl-report {
+    min-width: 0;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .deep-rl-report video,
+  .deep-rl-report .cv-figure img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 @media (max-width: 560px) {
   .drl-toc nav {
     grid-template-columns: 1fr;
+  }
+
+  .drl-hero-title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    line-height: 1.2;
   }
 }
