@@ -131,6 +131,10 @@ img {
   padding-top: 34px;
 }
 
+.page-home .eyebrow {
+  color: #ffffff;
+}
+
 .home-simple {
   max-width: 760px;
   padding: 28px 0;
@@ -447,6 +451,12 @@ img {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.cards-2 .card {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
 .cards-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -592,10 +602,9 @@ img {
 .mine-track-page .mine-track-panel {
   margin-top: 22px;
   padding: clamp(20px, 3.5vw, 34px);
-  border-radius: 30px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: var(--shadow);
+  border: none;
+  background: transparent;
+  box-shadow: none;
 }
 
 .mine-track-page .mine-track-loading {
@@ -707,10 +716,10 @@ img {
 
 .mine-track-page .report-page-title,
 .mine-track-page .content-panel {
-  border-radius: 24px;
+  border-radius: 0;
   padding: 24px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.03);
+  border: none;
+  background: transparent;
 }
 
 /* MineTrack report cleanup: remove boxed card look from Overview and below */
@@ -910,6 +919,16 @@ img {
 /* Let legacy research lead paragraphs span the full content width */
 .legacy-content .lede {
   max-width: none;
+}
+
+.legacy-content .section h2 a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.legacy-content .section h2 a:hover {
+  color: var(--accent-2);
 }
 
 /* Fix alignment for inline media in legacy research sections */

@@ -1,6 +1,16 @@
 import ShinyText from '../components/ShinyText'
 import PremiumGlowButton from '../components/PremiumGlowButton'
 
+/** Georgia Tech brand colors — alternating on home buttons */
+const GT_GOLD = {
+  glowColor: '#B3A369',
+  outerGlowColor: 'rgba(179, 163, 105, 0.38)',
+}
+const GT_NAVY = {
+  glowColor: '#2a7ab8',
+  outerGlowColor: 'rgba(0, 48, 87, 0.55)',
+}
+
 export default function HomePage() {
   return (
     <main className="page page-home">
@@ -25,6 +35,7 @@ export default function HomePage() {
               href="https://play.unity.com/en/user/5cc45f2f-e3e8-4f9f-82aa-cf762efe00d1"
               target="_blank"
               rel="noreferrer"
+              {...GT_GOLD}
             >
               <img className="unity-icon" src="/unity-logo-home.png" alt="" aria-hidden="true" />
               <span>Unity</span>
@@ -34,6 +45,7 @@ export default function HomePage() {
               href="https://github.gatech.edu/ilegene3"
               target="_blank"
               rel="noreferrer"
+              {...GT_NAVY}
             >
               <svg className="git-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -48,6 +60,7 @@ export default function HomePage() {
               href="/Isaac_Legene_6-1-26.pdf"
               target="_blank"
               rel="noreferrer"
+              {...GT_GOLD}
             >
               <svg viewBox="0 0 21 20" aria-hidden="true">
                 <use href="/icons.svg#documentation-icon" />
@@ -59,8 +72,7 @@ export default function HomePage() {
               href="https://www.linkedin.com/in/isaac-legene-b298a9a1/"
               target="_blank"
               rel="noreferrer"
-              glowColor="#f3b86c"
-              outerGlowColor="rgba(243, 184, 108, 0.22)"
+              {...GT_NAVY}
             >
               <span className="linkedin-mark" aria-hidden="true">
                 in

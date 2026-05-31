@@ -16,6 +16,8 @@
     .nav-dropdown:hover .nav-dropdown-content, .nav-dropdown:focus-within .nav-dropdown-content, .nav-dropdown.open .nav-dropdown-content { display: flex; }
     .page { max-width: 1080px; margin: 110px auto 50px; padding: 0 20px; }
     h1 { font-size: 38px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+    h1 a { color: inherit; text-decoration: none; }
+    h1 a:hover { color: #79d8d3; text-decoration: underline; }
     .title-logo { width: 40px; height: 40px; object-fit: contain; }
     .lede { color: #b9c3d1; margin-bottom: 24px; line-height: 1.6; }
     .meta { color: #9fb0c5; margin-bottom: 18px; }
@@ -24,6 +26,14 @@
     .gallery video, .gallery img { width: 100%; border-radius: 10px; border: 1px solid rgba(255,255,255,.12); object-fit: contain; height: 170px; background: #070b11; }
     .section { margin-top: 28px; padding: 0; background: transparent; border: 0; border-radius: 0; }
     .section h2 { margin-bottom: 10px; font-size: 28px; }
+    .section h2 a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.12em;
+    }
+    .section h2 a:hover {
+      color: #79d8d3;
+    }
     .section p { color: #d8e1ec; line-height: 1.75; }
     .section ul { margin-left: 20px; line-height: 1.7; }
     .split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; align-items: start; }
@@ -56,7 +66,7 @@
   </nav>
 
   <main class="page">
-    <h1>Georgia Tech - LiDAR Lab <img class="title-logo" src="../../images/gt_logo.png" alt="GT logo"></h1>
+    <h1><a href="https://lab-idar.gatech.edu/" target="_blank" rel="noopener noreferrer">Georgia Tech - LiDAR Lab</a> <img class="title-logo" src="../../images/gt_logo.png" alt="GT logo"></h1>
     <p class="meta">Humanoid Loco-Manipulation Research</p>
     <p class="meta">Georgia Tech LIDAR Lab · Graduate Researcher</p>
     <p class="lede">My research focuses on enabling humanoid robots to perform reliable loco-manipulation in real-world environments. I am especially interested in tasks where a humanoid must coordinate locomotion, whole-body control, manipulation, and physical contact to interact and complete task in a world of variation. At the Georgia Tech LiDAR Lab, I have worked on humanoid robotics projects involving diffusion policies, reinforcement learning, tactile sensing, VR teleoperation, simulation, data collection, and hardware deployment. My work has been centered around humanoid platforms such as the Booster T1 and Unitree G1, using tools including Isaac Lab, Isaac Sim, MuJoCo, and VR-based data collection systems.</p>
