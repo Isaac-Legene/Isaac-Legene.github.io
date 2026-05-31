@@ -1,37 +1,40 @@
-import BlurText from '../components/BlurText'
+import ShinyText from '../components/ShinyText'
+import PremiumGlowButton from '../components/PremiumGlowButton'
 
 export default function HomePage() {
-  const titleWords = [
-    'masters in robotics',
-    'Controls Engineer',
-    'graduate Researcher',
-    'Reinforcement Learning',
-    'Computer Vision',
-    'Machine Learning'
-  ]
-
   return (
     <main className="page page-home">
       <section className="home-simple home-simple-grid reveal">
         <div>
           <p className="eyebrow">Isaac Legene</p>
           <h1>
-            <BlurText
-              text="Robotics Engineer"
-              words={titleWords}
-              delay={110}
-              animateBy="letters"
-              direction="top"
-              hold={3800}
-              className="home-title-blur"
+            <ShinyText
+              text="Masters in Robotics"
+              speed={2.6}
+              color="#9aa7b8"
+              shineColor="#ffffff"
+              spread={125}
+              direction="left"
+              yoyo={false}
+              pauseOnHover={false}
             />
           </h1>
           <div className="home-simple-links home-icon-links">
-            <a className="button button-secondary icon-link" href="https://play.unity.com/en/user/5cc45f2f-e3e8-4f9f-82aa-cf762efe00d1" target="_blank" rel="noreferrer">
-              <img src="/unity-logo-home.png" alt="" aria-hidden="true" />
+            <PremiumGlowButton
+              className="icon-link"
+              href="https://play.unity.com/en/user/5cc45f2f-e3e8-4f9f-82aa-cf762efe00d1"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img className="unity-icon" src="/unity-logo-home.png" alt="" aria-hidden="true" />
               <span>Unity</span>
-            </a>
-            <a className="button button-secondary icon-link" href="https://github.gatech.edu/ilegene3" target="_blank" rel="noreferrer">
+            </PremiumGlowButton>
+            <PremiumGlowButton
+              className="icon-link"
+              href="https://github.gatech.edu/ilegene3"
+              target="_blank"
+              rel="noreferrer"
+            >
               <svg className="git-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   fill="currentColor"
@@ -39,15 +42,31 @@ export default function HomePage() {
                 />
               </svg>
               <span>Git</span>
-            </a>
-            <a className="button button-secondary icon-link" href="/IaacLegene-3-1-25.pdf" target="_blank" rel="noreferrer">
-              <svg viewBox="0 0 21 20" aria-hidden="true"><use href="/icons.svg#documentation-icon" /></svg>
+            </PremiumGlowButton>
+            <PremiumGlowButton
+              className="icon-link"
+              href="/Isaac_Legene_6-1-26.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg viewBox="0 0 21 20" aria-hidden="true">
+                <use href="/icons.svg#documentation-icon" />
+              </svg>
               <span>Resume</span>
-            </a>
-            <a className="button button-secondary icon-link" href="https://www.linkedin.com/in/isaac-legene-b298a9a1/" target="_blank" rel="noreferrer">
-              <span className="linkedin-mark" aria-hidden="true">in</span>
+            </PremiumGlowButton>
+            <PremiumGlowButton
+              className="icon-link"
+              href="https://www.linkedin.com/in/isaac-legene-b298a9a1/"
+              target="_blank"
+              rel="noreferrer"
+              glowColor="#f3b86c"
+              outerGlowColor="rgba(243, 184, 108, 0.22)"
+            >
+              <span className="linkedin-mark" aria-hidden="true">
+                in
+              </span>
               <span>LinkedIn</span>
-            </a>
+            </PremiumGlowButton>
           </div>
         </div>
         <img src="/images/headshotnobackground.png" alt="Isaac Legene" className="home-simple-image" />

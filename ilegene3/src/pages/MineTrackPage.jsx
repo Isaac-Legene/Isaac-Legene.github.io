@@ -1,3 +1,4 @@
+import ShinyText from '../components/ShinyText'
 import { useEffect, useState } from 'react'
 
 const bibliographyDatabase = {
@@ -230,7 +231,7 @@ export default function MineTrackPage() {
     <main className="page mine-track-page">
       <section className="content-section reveal">
         <p className="eyebrow">MineTrack</p>
-        <h1>Machine Learning CS 7641</h1>
+        <h1><ShinyText text="Machine Learning CS 7641" speed={2.2} color="#9aa7b8" shineColor="#ffffff" spread={120} direction="left" /></h1>
         <p className="lede">
           The old project content is now rendered inside React, including the original hero, all report text,
           captions, citations, and the project plan.
@@ -253,3 +254,4 @@ export default function MineTrackPage() {
     </main>
   )
 }
+

@@ -1,0 +1,35 @@
+.premium-glow-button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1;
+}
+
+.premium-glow-button__spin {
+  pointer-events: none;
+}
+
+.premium-glow-button__inner svg,
+.premium-glow-button__inner img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.premium-glow-button__inner .git-icon,
+.premium-glow-button__inner .unity-icon {
+  color: #ffffff;
+}
+
+.premium-glow-button__inner .unity-icon {
+  filter: none;
+  opacity: 1;
+}
+
+.premium-glow-button.icon-link {
+  min-width: 128px;
+}
+
+.home-icon-links .premium-glow-button {
+  min-width: 128px;
+}
