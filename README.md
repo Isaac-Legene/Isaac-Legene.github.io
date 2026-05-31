@@ -28,6 +28,8 @@ git commit -m "Deploy site build"
 git push
 ```
 
+`deploy.ps1` copies `index.html` → `404.html` so refreshing deep links (e.g. `/experience`) works on GitHub Pages.
+
 ## Routes
 
 - `/` — Home
