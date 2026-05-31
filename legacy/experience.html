@@ -230,6 +230,7 @@
 
     .tesla-gallery .tesla-rotate-90 {
       transform: rotate(90deg);
+      transform-origin: center center;
     }
 
     .video-row {
@@ -583,6 +584,47 @@
 
       .project-block-media video {
         height: 220px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .tesla-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .gallery img,
+      .gallery video {
+        height: auto;
+        max-height: 240px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .tesla-gallery,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery img,
+      .gallery video {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: min(70vh, 360px);
+        object-fit: contain;
+      }
+
+      .tesla-gallery img,
+      .tesla-gallery video {
+        object-fit: contain;
+      }
+
+      .tesla-gallery .tesla-rotate-90 {
+        transform: none;
+        width: 100%;
+        max-width: 100%;
       }
     }
   </style>

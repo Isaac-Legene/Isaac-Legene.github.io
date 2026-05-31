@@ -880,6 +880,45 @@ img {
   width: 100%;
 }
 
+/* Experience page: Tesla / gallery grids on narrow screens */
+.legacy-content .gallery,
+.legacy-content .tesla-gallery {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .legacy-content .gallery,
+  .legacy-content .tesla-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .legacy-content .gallery img,
+  .legacy-content .gallery video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 240px;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 560px) {
+  .legacy-content .gallery,
+  .legacy-content .tesla-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .legacy-content .gallery img,
+  .legacy-content .gallery video {
+    max-height: min(70vh, 360px);
+  }
+
+  .legacy-content .tesla-gallery .tesla-rotate-90 {
+    transform: none;
+  }
+}
+
 /* Tweak legacy project headers: smaller logos, role full-width, GT logo proximity */
 .legacy-content .project-title {
   display: flex;
