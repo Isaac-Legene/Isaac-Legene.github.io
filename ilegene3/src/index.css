@@ -916,19 +916,36 @@ img {
   align-items: flex-start;
 }
 
+.legacy-content .project-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.legacy-content .project-title a:hover {
+  color: var(--accent-2);
+  text-decoration: none;
+}
+
 /* Let legacy research lead paragraphs span the full content width */
 .legacy-content .lede {
   max-width: none;
 }
 
-.legacy-content .section h2 a {
+/* Research report titles only (<section class="section">), not Experience project headers */
+.legacy-content section.section > h2 a {
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.12em;
 }
 
-.legacy-content .section h2 a:hover {
+.legacy-content section.section > h2 a:hover {
   color: var(--accent-2);
+  text-decoration: underline;
+}
+
+.legacy-content h2.project-title a,
+.legacy-content h2.project-title a:hover {
+  text-decoration: none;
 }
 
 /* Fix alignment for inline media in legacy research sections */

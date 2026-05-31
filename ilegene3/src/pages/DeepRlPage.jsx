@@ -5,7 +5,6 @@ import './DeepRlPage.css'
 const LEGACY_BASE = '/legacy/class-projects/cs8803-drl/'
 
 const TOC = [
-  { id: 'abstract', label: 'Abstract' },
   { id: 'overview', label: 'Overview' },
   { id: 'method', label: 'Methodology' },
   { id: 'results', label: 'Results' },

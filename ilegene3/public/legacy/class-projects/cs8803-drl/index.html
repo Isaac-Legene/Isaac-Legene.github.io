@@ -392,7 +392,6 @@
             <aside class="sidebar">
                 <h3>📖 Contents</h3>
                 <ul>
-                    <li><a href="#abstract">→ Abstract</a></li>
                     <li><a href="#overview">→ Overview</a></li>
                     <li><a href="#method">→ Methodology</a></li>
                     <li><a href="#results">→ Results</a></li>
@@ -408,9 +407,6 @@
             <source src="../../videos/Recording 2026-04-30 140855.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-
-        <h2 id="abstract">Abstract</h2>
-        <p>This project investigates multi-agent reinforcement learning in the SoccerTwos 2v2 competitive environment. We trained PPO-based agents using self-play and evaluated the effectiveness of reward shaping with potential-based feedback. Our modified agent incorporates observation augmentation and dense reward signals to address the sparse reward problem inherent in goal-scoring environments. Results demonstrate that potential-based reward shaping accelerates convergence and improves policy robustness compared to the baseline self-play approach.</p>
 
         <h2 id="overview">Overview</h2>
         <p>Multi-agent reinforcement learning (MARL) in competitive environments presents unique challenges: agents must simultaneously learn optimal policies while adapting to opponents that are also learning. SoccerTwos, a physics-based 2v2 soccer environment, exemplifies these challenges with sparse rewards (goals are rare), continuous action spaces, and partial observability. This project addresses these challenges through two main contributions: (1) implementing a robust self-play training framework with PPO, and (2) augmenting the learning signal through potential-based reward shaping that encourages ball control and strategic positioning.</p>
