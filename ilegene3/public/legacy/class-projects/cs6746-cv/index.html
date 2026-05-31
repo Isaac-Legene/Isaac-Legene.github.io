@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS 6746 — Computer Vision</title>
+</head>
+<body>
+    <div class="content markdown-body">
+        <h2 id="overview">Overview</h2>
+        <p>
+            Portfolio of coursework for <strong>CS 6746 — Computer Vision</strong> at Georgia Tech (CS 6476 curriculum).
+            The sequence moves from classical image processing and geometry through deep learning for recognition and
+            segmentation, then to 3D perception with point clouds and neural radiance fields.
+        </p>
+        <p>
+            Seven projects (0–6; Project 0 is environment setup) cover convolution and hybrid images, SIFT and camera
+            calibration, scene recognition, semantic segmentation, PointNet on LiDAR sweeps, and NeRF. Each project
+            pairs implemented code (NumPy, PyTorch) with a written report and visual results.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Topic</th>
+                    <th>Key skills</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Convolution &amp; hybrid images</td><td>Gaussian filters, frequency separation, PyTorch conv</td></tr>
+                <tr><td>2</td><td>SIFT &amp; calibration</td><td>Harris corners, descriptors, epipolar geometry, RANSAC</td></tr>
+                <tr><td>3</td><td>Scene recognition</td><td>CNNs, augmentation, ResNet, multilabel classification</td></tr>
+                <tr><td>4</td><td>Semantic segmentation</td><td>PSPNet, CamVid, dilated convolutions, mIoU evaluation</td></tr>
+                <tr><td>5</td><td>Point clouds</td><td>PointNet, Argoverse sweeps, 3D classification</td></tr>
+                <tr><td>6</td><td>NeRF</td><td>Positional encoding, volume rendering, novel views</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="project-1">Project 1 — Convolution &amp; Hybrid Images</h2>
+        <p>
+            Built convolution from scratch in NumPy (Gaussian kernels, Sobel/Laplacian, low/high-pass filtering), then
+            constructed <strong>hybrid images</strong> by combining low frequencies from one photograph with high
+            frequencies from another. Extended the pipeline with PyTorch datasets and frequency-domain convolution.
+        </p>
+
+        <h2 id="project-2">Project 2 — SIFT &amp; Camera Calibration</h2>
+        <p>
+            Implemented the classical feature pipeline: Harris corner detection, feature matching, SIFT descriptors,
+            and geometric verification with homographies and epipolar constraints. Evaluated on landmark image pairs
+            (Notre Dame, Mount Rushmore, Gaudí) and Georgia Tech campus sequences.
+        </p>
+        <figure class="cv-figure cv-figure-wide">
+            <img src="images/p2-feature-keypoints.png" alt="Detected feature keypoints on two views of a landmark building" loading="lazy">
+            <figcaption>
+                SIFT keypoint detection on two views of the Episcopal Palace of Astorga — dense features on corners,
+                edges, and textured stone before matching and geometry estimation.
+            </figcaption>
+        </figure>
+
+        <h2 id="project-3">Project 3 — Scene Recognition</h2>
+        <p>
+            Trained deep networks for <strong>15-way outdoor scene classification</strong> (MIT indoor/outdoor scene
+            dataset). Progression: custom <code>SimpleNet</code> → data augmentation and normalization → ResNet
+            fine-tuning → multilabel ResNet. Used confusion matrices to analyze per-class errors and class imbalance.
+        </p>
+        <figure class="cv-figure cv-figure-wide">
+            <img src="images/p3-dataset.png" alt="Scene recognition dataset samples across classes" loading="lazy">
+            <figcaption>MIT scene dataset — 15 outdoor/indoor categories (coast, forest, highway, kitchen, etc.).</figcaption>
+        </figure>
+        <figure class="cv-figure cv-figure-compact">
+            <img src="images/p3-confusion-matrix.jpg" alt="Normalized confusion matrix for scene recognition" loading="lazy">
+            <figcaption>Normalized confusion matrix from my report, highlighting strongest classes and indoor-scene confusions.</figcaption>
+        </figure>
+        <p>
+            Report targets: ≥45% validation accuracy (SimpleNet), ≥55% (augmented SimpleNetFinal), with ResNet and
+            multilabel extensions for higher performance. Training used PACE ICE GPUs for larger experiments.
+        </p>
+
+        <h2 id="project-4">Project 4 — Semantic Segmentation</h2>
+        <p>
+            Implemented pyramid pooling (PPM), CamVid dataloading, and a PSPNet-style segmentation head. Trained on
+            CamVid at 240×240 resolution for 5 epochs and evaluated with mean IoU, mean accuracy, and pixel accuracy.
+        </p>
+        <table>
+            <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+            <tbody>
+                <tr><td>Mean IoU (mIoU)</td><td><strong>42.78%</strong></td></tr>
+                <tr><td>Mean accuracy (mAcc)</td><td>50.61%</td></tr>
+                <tr><td>Overall pixel accuracy</td><td>85.44%</td></tr>
+            </tbody>
+        </table>
+        <p>Strong classes included Sky (84.3% IoU), Road (85.5%), Tree (77.9%), and Building (81.9%). Rare classes such as Bicyclist and SignSymbol were harder at this resolution and training budget.</p>
+        <figure class="cv-figure cv-figure-pair">
+            <img src="images/p4-seg-1.jpg" alt="Semantic segmentation prediction 1" loading="lazy">
+            <img src="images/p4-seg-2.jpg" alt="Semantic segmentation prediction 2" loading="lazy">
+        </figure>
+        <figure class="cv-figure">
+            <img src="images/p4-seg-3.jpg" alt="Semantic segmentation prediction 3" loading="lazy">
+            <figcaption>Additional CamVid validation frame with class-colored overlay.</figcaption>
+        </figure>
+
+        <h2 id="project-5">Project 5 — PointNet (Point Clouds)</h2>
+        <p>
+            Classified <strong>Argoverse LiDAR sweeps</strong> with a simplified PointNet: permutation-invariant MLPs over
+            3D points, baseline models, and optional T-Net spatial transforms (extra credit). Data spans 20 object
+            categories (vehicles, pedestrians, signs, etc.) stored as text point clouds rather than images.
+        </p>
+        <p>
+            Implemented the full pipeline—dataloader, baseline classifier, PointNet architecture, and error analysis—
+            with training on PACE. Report discusses invariance to point order and sensitivity to sampling density.
+        </p>
+
+        <h2 id="project-6">Project 6 — NeRF</h2>
+        <p>
+            Built a neural radiance field from first principles: positional encoding of 3D coordinates, MLP density and
+            color heads, ray sampling, and volume rendering to synthesize novel views. Started with 2D image fitting
+            before extending to full 3D NeRF training on multi-view captures.
+        </p>
+        <figure class="cv-figure cv-figure-wide">
+            <img src="images/p6-nerf-lego-training.jpg" alt="NeRF Lego scene training with depth and PSNR" loading="lazy">
+            <figcaption>
+                Project 6 report figure on the Lego scene: rendered view, target image, PSNR curve, and predicted depth map
+                after training.
+            </figcaption>
+        </figure>
+
+        <h2 id="analysis">Analysis</h2>
+        <p>
+            Across projects, the course emphasized both <strong>implementing fundamentals</strong> (convolution, SIFT,
+            camera models) and <strong>scaling with deep learning</strong> (CNNs, segmentation, PointNet, NeRF).
+            Classical methods remain interpretable and fast; learned models handle ambiguity in recognition and dense
+            prediction but need data, compute, and careful evaluation metrics (accuracy, mIoU, IoU per class).
+        </p>
+
+        <h2 id="references">References</h2>
+        <ul>
+            <li>Oliva, Torralba, Schyns — hybrid image perception (frequency-based image merging).</li>
+            <li>Lowe — SIFT distinctive image features.</li>
+            <li>He et al. — ResNet deep residual learning.</li>
+            <li>Zhao et al. — PSPNet pyramid scene parsing.</li>
+            <li>Qi et al. — PointNet for point cloud classification.</li>
+            <li>Mildenhall et al. — NeRF: neural radiance fields.</li>
+            <li>Georgia Tech CS 6476/6746 course materials and project specifications.</li>
+        </ul>
+    </div>
+</body>
+</html>

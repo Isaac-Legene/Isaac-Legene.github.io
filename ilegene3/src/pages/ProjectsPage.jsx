@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 export default function ProjectsPage() {
   const projects = [
     { to: '/projects/deep-rl', title: 'Deep Reinforcement Learning CS 8803' },
-    { to: '/projects/minetrack', title: 'Machine Learning CS 7641' }
+    { to: '/projects/minetrack', title: 'Machine Learning CS 7641' },
+    { to: '/projects/computer-vision', title: 'Computer Vision CS 6746' },
   ]
 
   return (
@@ -16,7 +17,7 @@ export default function ProjectsPage() {
         </h1>
       </section>
 
-      <div className="cards cards-2 reveal delay-1">
+      <div className="cards cards-3 reveal delay-1">
         {projects.map((project) => (
           <Link key={project.to} className="card card-link" to={project.to}>
             <span>Featured project</span>

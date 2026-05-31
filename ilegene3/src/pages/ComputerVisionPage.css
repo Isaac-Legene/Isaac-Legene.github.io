@@ -1,0 +1,111 @@
+/* Computer Vision page — hero + TOC row, full-width report */
+.cv-page .cv-hero-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 260px);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+  padding: clamp(32px, 6vw, 72px) clamp(18px, 4vw, 48px) clamp(28px, 4vw, 40px);
+  border-bottom: 1px solid var(--border);
+}
+
+.cv-page .cv-hero-main {
+  display: grid;
+  gap: clamp(16px, 2.5vw, 24px);
+  min-width: 0;
+}
+
+.cv-page .cv-hero-main .drl-hero-lede {
+  max-width: none;
+}
+
+.cv-page .cv-toc {
+  position: sticky;
+  top: 88px;
+  padding: 20px 0 0;
+  border-left: 1px solid var(--border);
+  padding-left: clamp(16px, 2vw, 24px);
+}
+
+.cv-page .cv-toc nav {
+  display: grid;
+  gap: 4px;
+}
+
+.cv-page .cv-toc a {
+  padding: 8px 0;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  border-bottom: none;
+}
+
+.cv-page .cv-report-full {
+  padding: clamp(32px, 5vw, 56px) clamp(18px, 4vw, 48px);
+  max-width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.cv-page .cv-report-full .deep-rl-report {
+  padding: 0;
+  max-width: none;
+}
+
+.cv-page .deep-rl-report .cv-figure {
+  margin: 28px auto;
+  max-width: 920px;
+}
+
+.cv-page .deep-rl-report .cv-figure img {
+  display: block;
+  width: 100%;
+  max-height: min(52vh, 520px);
+  object-fit: contain;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.cv-page .deep-rl-report .cv-figure-pair,
+.cv-page .deep-rl-report .cv-figure-triple {
+  max-width: 100%;
+}
+
+.cv-page .deep-rl-report .cv-figure-pair img,
+.cv-page .deep-rl-report .cv-figure-triple img {
+  max-height: min(40vh, 400px);
+}
+
+.cv-page .deep-rl-report .cv-figure-compact img {
+  max-height: min(32vh, 320px);
+}
+
+.cv-page .deep-rl-report .cv-figure-wide {
+  max-width: 100%;
+}
+
+.cv-page .deep-rl-report .cv-figure-wide img {
+  max-height: min(56vh, 560px);
+}
+
+@media (max-width: 900px) {
+  .cv-page .cv-hero-header {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-page .cv-toc {
+    position: static;
+    border-left: none;
+    padding-left: 0;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  .cv-page .cv-toc nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .cv-page .cv-toc nav {
+    grid-template-columns: 1fr;
+  }
+}
