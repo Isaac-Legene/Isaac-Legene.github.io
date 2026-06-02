@@ -41,6 +41,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body,
@@ -51,6 +52,16 @@ body.report-page {
     background-color: var(--bg-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+img,
+video,
+svg,
+iframe {
+    max-width: 100%;
+    height: auto;
 }
 
 .container {
@@ -331,12 +342,29 @@ body.lightbox-open {
     margin: 1.25rem 0 1.5rem;
 }
 
+.figure-triple-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .figure-cell {
     margin: 0;
 }
 
+.table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    margin: 1.5rem 0;
+}
+
+.table-scroll table {
+    margin: 0;
+    min-width: 640px;
+}
+
 @media (max-width: 900px) {
-    .figure-pair-grid {
+    .figure-pair-grid,
+    .figure-triple-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -1417,13 +1445,21 @@ footer p {
 
     nav .container {
         flex-direction: column;
+        align-items: flex-start;
         gap: 0.5rem;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
     }
 
     nav ul {
+        flex-wrap: wrap;
         gap: 0.25rem;
+        width: 100%;
+    }
+
+    nav a {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.88rem;
     }
 
     .hero-title {
@@ -1435,9 +1471,14 @@ footer p {
         font-size: 1.15rem;
     }
 
+    .hero-logo {
+        max-width: 100%;
+    }
+
     .hero-landing {
-        min-height: 70vh;
+        min-height: auto;
         gap: 2rem;
+        padding: 1rem 0 2rem;
     }
 
     .placeholder-visual {
@@ -1448,24 +1489,39 @@ footer p {
 
     .action-buttons {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+        width: 100%;
     }
 
     .btn {
         width: 100%;
-        max-width: 280px;
+        max-width: none;
+        min-width: 0;
     }
 
     .content-panel {
-        padding: 1.5rem;
-        margin: 1.25rem 0;
+        padding: 1.25rem;
+        margin: 1rem 0;
         border-radius: var(--radius-sm);
+        overflow-x: auto;
+    }
+
+    .content-panel p,
+    .content-panel li,
+    .content-panel figcaption {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    main {
+        padding: 1rem 0;
     }
 
     .report-shell {
         grid-template-columns: 1fr;
-        padding: 0 16px;
+        padding: 0 12px;
         gap: 1rem;
+        width: 100%;
     }
 
     .report-sidebar {
@@ -1476,7 +1532,7 @@ footer p {
 
     .scrollspy-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         gap: 0.35rem;
     }
 
@@ -1500,7 +1556,11 @@ footer p {
     }
 
     .content-panel h2 {
-        font-size: 1.35rem;
+        font-size: 1.25rem;
+    }
+
+    .content-panel h4 {
+        font-size: 1.05rem;
     }
 
     .strengths-limitations {
@@ -1510,7 +1570,21 @@ footer p {
 
     .container,
     .landing-container {
-        padding: 0 16px;
+        padding: 0 12px;
+    }
+
+    .gantt-card-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .gantt-download {
+        width: 100%;
+        text-align: center;
+    }
+
+    .gantt-track-shell {
+        max-width: 100%;
     }
 
     table {

@@ -8,8 +8,8 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <style>
     <script src="/legacy/embed-shell.js"></script>
+    <style>
         .portfolio-nav {
             position: fixed;
             top: 0;
@@ -93,6 +93,24 @@
         }
         .minetrack-tab.active {
             background: rgba(255,255,255,0.18);
+        }
+        @media (max-width: 768px) {
+            .portfolio-nav {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .portfolio-nav-links {
+                flex-wrap: wrap;
+                gap: 8px 12px;
+            }
+            .portfolio-nav-dropdown-content a {
+                white-space: normal;
+            }
+            .minetrack-tabs {
+                margin-top: 72px;
+                padding: 0 12px;
+            }
         }
     </style>
 

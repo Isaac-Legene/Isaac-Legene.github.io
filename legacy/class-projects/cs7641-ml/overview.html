@@ -307,21 +307,21 @@
                         The MLP accurately captured rotation but struggled with translation accuracy. This is likely due to the MLP’s lack of memory, since it cannot learn momentum trends over time (consecutive frames tend to have similar transforms). The LSTM performed better on translation but introduced rotation noise, and the transformer struggled with translation and rotation. Both the LSTM and transformer were difficult to sufficiently train because of the high computational requirements of training sequential models. Vision transformer architectures are known to be particularly data- and training-hungry, so the sequential models likely might show better performance with more training time.
                     </p>
 
-                    <div class="figure-pair-grid figure-pair-separate-captions" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
-                        <figure class="figure-cell" style="justify-self: center;">
-                            <img src="media/images/final-report-figures/Results/LSTM/10_epoch/topdown_yaw_epoch30.png" alt="LSTM topdown yaw 30 epoch" style="width: 70% !important; margin: 0 auto; display: block;">
+                    <div class="figure-pair-grid figure-triple-grid figure-pair-separate-captions">
+                        <figure class="figure-cell">
+                            <img src="media/images/final-report-figures/Results/LSTM/10_epoch/topdown_yaw_epoch30.png" alt="LSTM topdown yaw 30 epoch">
                             <figcaption>
                                 30 Epoch LSTM (Plains). Translation tracking is modest, but yaw tracking is weaker.
                             </figcaption>
                         </figure>
-                        <figure class="figure-cell" style="justify-self: center; margin-top: 6.5px;">
-                            <img src="media/images/final-report-figures/Results/MLP_Regressor_MagLoss/topdown_yaw_60epoch.png" alt="MLP topdown yaw 60 epoch" style="width: 100% !important; margin: 0 auto; display: block;">
+                        <figure class="figure-cell">
+                            <img src="media/images/final-report-figures/Results/MLP_Regressor_MagLoss/topdown_yaw_60epoch.png" alt="MLP topdown yaw 60 epoch">
                             <figcaption>
                                 60 Epoch MLP (Plains). Yaw tracking is exceptional, and the overall path length is consistent, but translation drift accumulates.
                             </figcaption>
                         </figure>
-                        <figure class="figure-cell" style="justify-self: center;">
-                            <img src="media/images/final-report-figures/Results/Transformer/topdown_yaw_epoch30.png" alt="Transformer topdown yaw 30 epoch" style="width: 70% !important; margin: 0 auto; display: block;">
+                        <figure class="figure-cell">
+                            <img src="media/images/final-report-figures/Results/Transformer/topdown_yaw_epoch30.png" alt="Transformer topdown yaw 30 epoch">
                             <figcaption>
                                 30 Epoch Transformer (Plains). Neither translation nor yaw tracking is strong.
                             </figcaption>
@@ -394,6 +394,7 @@
 
                 <section class="content-panel fade-in" id="contribution-table" data-spy-section data-nav-label="Contributions">
                     <h2>Contribution Table</h2>
+                    <div class="table-scroll">
                     <table aria-label="MineTrack contribution table derived from Gantt ownership">
                         <thead>
                             <tr>
@@ -459,6 +460,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
                 </section>
 
                 <section class="content-panel fade-in" id="references" data-spy-section data-nav-label="References">
