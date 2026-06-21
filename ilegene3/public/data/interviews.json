@@ -1,8 +1,8 @@
 {
   "title": "Graduate job search",
-  "generated_at": "2026-06-21T18:56:44",
+  "generated_at": "2026-06-21T18:59:17",
   "stats": {
-    "interviews": 39,
+    "interviews": 37,
     "companies": 22
   },
   "interviews": [
@@ -17,12 +17,6 @@
       "position": "Controls Fall 2026 Internship",
       "date": "2026-06-11T12:45:00",
       "evidence": "Calendar event"
-    },
-    {
-      "company": "SpaceX",
-      "position": "Controls Fall 2026 Graduate Engineer Internship/Co-op",
-      "date": "2026-06-01T15:47:00",
-      "evidence": "Email (Inbox)"
     },
     {
       "company": "SpaceX",
@@ -58,12 +52,6 @@
       "company": "Siemens",
       "position": "Digital Industries Automation Internship Program - Technical Consulting Track",
       "date": "2026-04-29T11:46:00",
-      "evidence": "Email (Inbox)"
-    },
-    {
-      "company": "ABB Robotics",
-      "position": "Robotics Intern",
-      "date": "2026-04-29T09:52:00",
       "evidence": "Email (Inbox)"
     },
     {
