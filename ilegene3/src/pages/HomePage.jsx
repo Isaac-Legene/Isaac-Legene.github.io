@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
     <main className="page page-home">
       <section className="home-simple home-simple-grid reveal">
-        <div>
+        <div className="home-simple-copy">
           <p className="eyebrow">Isaac Legene</p>
           <h1>
             <ShinyText
@@ -81,7 +81,9 @@ export default function HomePage() {
             </PremiumGlowButton>
           </div>
         </div>
-        <img src="/legacy/images/headshotnobackground.png" alt="Isaac Legene" className="home-simple-image" />
+        <div className="home-simple-portrait">
+          <img src="/legacy/images/headshotnobackground.png" alt="Isaac Legene" className="home-simple-image" />
+        </div>
       </section>
     </main>
   )

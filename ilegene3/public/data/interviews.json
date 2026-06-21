@@ -1,0 +1,250 @@
+{
+  "title": "Graduate job search",
+  "generated_at": "2026-06-21T16:22:48",
+  "stats": {
+    "interviews": 40,
+    "companies": 21
+  },
+  "interviews": [
+    {
+      "company": "Startup",
+      "position": "Industrial Automation Engineer (staffing outreach)",
+      "date": "2026-06-16T09:03:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "Tesla",
+      "position": "Controls Fall 2026 Internship",
+      "date": "2026-06-11T12:45:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "SpaceX",
+      "position": "Controls Fall 2026 Graduate Engineer Internship/Co-op",
+      "date": "2026-06-01T15:47:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "SpaceX",
+      "position": "Controls Fall 2026 Graduate Engineer Internship/Co-op",
+      "date": "2026-05-29T16:22:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "Gradient Robotics",
+      "position": "ML Engineering Intern",
+      "date": "2026-05-14T20:01:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "Tesla",
+      "position": "Fall 2026 Internship",
+      "date": "2026-05-13T13:00:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "ABB Robotics",
+      "position": "Robotics Intern",
+      "date": "2026-05-01T12:30:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "Tesla",
+      "position": "Fall 2026 Internship",
+      "date": "2026-04-29T12:00:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "Siemens",
+      "position": "Digital Industries Automation Internship Program - Technical Consulting Track",
+      "date": "2026-04-29T11:46:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "ABB Robotics",
+      "position": "Robotics Intern",
+      "date": "2026-04-29T09:52:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "Product development Engineer",
+      "position": "Product Development Engineer FA (staffing outreach)",
+      "date": "2026-04-24T14:03:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "Figure",
+      "position": "Test Automation Intern [Summer 2026]",
+      "date": "2026-04-22T17:00:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "BlackRock",
+      "position": "Role not specified in invite",
+      "date": "2026-04-17T12:18:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "Amazon",
+      "position": "Software Dev Engineer I Intern (Robotics)",
+      "date": "2026-03-30T13:38:00",
+      "evidence": "Email (Sent Items)"
+    },
+    {
+      "company": "Amazon",
+      "position": "Software Dev Engineer I Intern (Robotics)",
+      "date": "2026-03-30T12:11:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "FAS (Factory Automation Systems)",
+      "position": "Robotics Intern",
+      "date": "2026-03-13T08:00:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "Tesla",
+      "position": "Automation Controls/Systems Technician, Optimus",
+      "date": "2026-03-12T18:00:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "Bot Auto",
+      "position": "Intern, Planning & Control Research (RL & Robotics)",
+      "date": "2026-03-05T11:30:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "iMETALX",
+      "position": "Simulation Realism Engineer Internship - Summer 2026",
+      "date": "2026-02-18T15:00:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "micro1 interview",
+      "position": "Electro-Mechanical and Mechatronic Technologist and Technician",
+      "date": "2026-02-18T13:49:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "SpaceX",
+      "position": "Starship Automation & Controls Engineer",
+      "date": "2026-02-17T18:27:00",
+      "evidence": "Email (Sent Items)"
+    },
+    {
+      "company": "Johnson & Johnson",
+      "position": "Automation controls Engineer",
+      "date": "2026-02-17T08:20:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "Tesla",
+      "position": "Controls Engineering Summer 2026 Internship",
+      "date": "2026-02-13T19:27:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "VinMotion",
+      "position": "Robot learning",
+      "date": "2026-02-13T13:00:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "Siemens",
+      "position": "Digital Industries Automation Internship Program - Technical Consulting Track",
+      "date": "2026-02-10T11:19:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "Thermo Fisher Scientific",
+      "position": "Sr. Intern Automation Engineering",
+      "date": "2026-02-06T10:30:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "Tesla",
+      "position": "Controls Engineering Summer 2026 Internship",
+      "date": "2026-02-04T13:00:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "FieldAI",
+      "position": "Research Scientist - Robot Learning",
+      "date": "2026-01-07T13:02:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "General Motors",
+      "position": "2026 Summer Intern \u2013 R&D Manufacturing Robotics & Automation",
+      "date": "2025-12-05T12:30:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "Matic - Robotics Production Intern",
+      "position": "Robotics Production Intern",
+      "date": "2025-11-21T13:20:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "General Motors",
+      "position": "2026 Summer Intern \u2013 R&D Manufacturing Robotics & Automation",
+      "date": "2025-11-21T07:54:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "SpaceX",
+      "position": "Robotics Engineer (Starship) - Automation & Controls",
+      "date": "2025-11-12T13:56:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "SpaceX",
+      "position": "Electrical Engineering Spring 2026 Engineering Internship/Co-op",
+      "date": "2025-10-15T22:28:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "SpaceX",
+      "position": "Power Spring 2026 Engineering Internship/Co-op",
+      "date": "2025-10-09T16:30:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "Figure",
+      "position": "Validation Engineering Intern [Winter 2026]",
+      "date": "2025-10-09T15:02:00",
+      "evidence": "Email (Sent Items)"
+    },
+    {
+      "company": "Roboloop",
+      "position": "Robotics Engieering",
+      "date": "2025-10-08T14:27:00",
+      "evidence": "Email (Sent Items)"
+    },
+    {
+      "company": "Figure",
+      "position": "Validation Engineering Intern [Winter 2026]",
+      "date": "2025-10-08T12:32:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "SpaceX",
+      "position": "Controls Spring 2026 Engineering Internship/Co-op",
+      "date": "2025-10-06T14:00:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "SpaceX",
+      "position": "Controls Spring 2026 Engineering Internship/Co-op",
+      "date": "2025-09-29T17:30:00",
+      "evidence": "Email (Inbox)"
+    },
+    {
+      "company": "SpaceX",
+      "position": "Robotics and Controls Spring 2026 Engineering Internship/Co-op",
+      "date": "2025-09-22T22:46:00",
+      "evidence": "Email (Inbox)"
+    }
+  ]
+}

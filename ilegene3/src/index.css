@@ -29,6 +29,7 @@ body {
   font-family: 'Space Grotesk', sans-serif;
   background: #000000;
   color: var(--text);
+  overflow-x: hidden;
 }
 
 a {
@@ -52,10 +53,12 @@ img {
   width: min(1120px, calc(100% - 36px));
   margin: 0 auto;
   padding: 32px 0 72px;
+  min-width: 0;
 }
 
 .page-home {
-  padding-top: 34px;
+  width: min(1180px, calc(100% - 36px));
+  padding-top: clamp(20px, 4vh, 42px);
 }
 
 .page-home .eyebrow {
@@ -63,23 +66,39 @@ img {
 }
 
 .home-simple {
-  max-width: 760px;
-  padding: 28px 0;
+  position: relative;
+  max-width: none;
+  min-height: min(680px, calc(100vh - 104px));
+  padding: clamp(28px, 5vw, 58px);
+  overflow: hidden;
+  border-radius: 0;
+  isolation: isolate;
+}
+
+.home-simple::before,
+.home-simple::after {
+  content: none;
 }
 
 .home-simple-grid {
-  max-width: 1100px;
+  max-width: 1180px;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 28px;
+  grid-template-columns: minmax(0, 1.02fr) minmax(280px, 0.88fr);
+  gap: clamp(28px, 6vw, 72px);
   align-items: center;
+}
+
+.home-simple-copy {
+  min-width: 0;
+  max-width: 660px;
 }
 
 .home-simple h1 {
   margin: 0;
   font-family: 'Source Serif 4', serif;
-  font-size: clamp(2.4rem, 7vw, 4rem);
-  line-height: 1;
+  font-size: clamp(2.75rem, 6.4vw, 5.8rem);
+  line-height: 0.94;
+  text-wrap: balance;
 }
 
 .blur-text {
@@ -142,13 +161,14 @@ img {
 .home-simple-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 24px;
+  gap: 11px;
+  margin-top: clamp(22px, 4vw, 34px);
+  max-width: 620px;
 }
 
 .home-icon-links .icon-link {
   gap: 8px;
-  min-width: 128px;
+  min-width: 118px;
 }
 
 .home-icon-links .icon-link svg,
@@ -178,10 +198,26 @@ img {
 
 .home-simple-image {
   width: 100%;
-  max-width: 360px;
-  max-height: 420px;
+  max-width: min(390px, 100%);
+  max-height: min(510px, 62vh);
   object-fit: contain;
+  object-position: bottom center;
   justify-self: center;
+  filter: drop-shadow(0 28px 38px rgba(0, 0, 0, 0.52));
+}
+
+.home-simple-portrait {
+  position: relative;
+  display: grid;
+  align-items: end;
+  justify-self: center;
+  width: min(430px, 100%);
+  min-height: 420px;
+  padding: clamp(16px, 3vw, 28px) clamp(10px, 2vw, 18px) 0;
+}
+
+.home-simple-portrait::before {
+  content: none;
 }
 
 .hero-grid {
@@ -207,7 +243,7 @@ img {
 .content-section,
 .feature-panel,
 .stat-card {
-  border-radius: 28px;
+  border-radius: 20px;
 }
 
 .hero-copy {
@@ -356,7 +392,7 @@ img {
 .card,
 .feature-panel,
 .timeline-item {
-  border-radius: 24px;
+  border-radius: 18px;
 }
 
 .content-section {
@@ -394,17 +430,74 @@ img {
 }
 
 .card {
-  display: block;
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 218px;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
   text-decoration: none;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.026) 58%),
+    rgba(255, 255, 255, 0.03);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(179, 163, 105, 0.14), transparent 12rem),
+    radial-gradient(circle at 88% 0%, rgba(42, 122, 184, 0.15), transparent 11rem);
+  opacity: 0.9;
+  transition: opacity 180ms ease;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(179, 163, 105, 0.68), rgba(42, 122, 184, 0.46));
+  opacity: 0.72;
+  transform: rotate(8deg);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card-link:hover::before {
+  opacity: 1;
+}
+
+.card-link:hover::after {
+  opacity: 0.92;
+  transform: rotate(3deg) translateY(-2px);
 }
 
 .card span {
   display: inline-block;
   margin-bottom: 12px;
-  color: var(--accent-2);
+  width: max-content;
+  max-width: calc(100% - 74px);
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: var(--accent);
+  background: rgba(179, 163, 105, 0.1);
+  border: 1px solid rgba(179, 163, 105, 0.2);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
 }
 
 .card strong,
@@ -413,6 +506,36 @@ img {
   display: block;
   margin-bottom: 10px;
   font-size: 1.18rem;
+}
+
+.card strong {
+  max-width: calc(100% - 48px);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.card p {
+  margin: 6px 0 20px;
+  font-size: 0.95rem;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.card-meta small {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: rgba(245, 247, 251, 0.78);
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.75rem;
 }
 
 .feature-panel {
@@ -498,16 +621,98 @@ img {
 
   .home-simple-grid {
     grid-template-columns: 1fr;
+    gap: 18px;
+    min-height: auto;
+    padding: clamp(24px, 6vw, 38px);
+  }
+
+  .home-simple-copy {
+    max-width: 100%;
+  }
+
+  .home-simple-portrait {
+    width: min(320px, 78vw);
+    min-height: 260px;
+    margin-top: 2px;
+  }
+
+  .home-simple-image {
+    max-height: 350px;
   }
 }
 
 @media (max-width: 640px) {
+  .page,
+  .page-home {
+    width: min(100%, calc(100% - 18px));
+  }
+
+  .page {
+    padding-bottom: 52px;
+  }
+
+  .page-home {
+    padding-top: 14px;
+  }
+
+  .home-simple {
+    border-radius: 0;
+  }
+
   .hero-copy h1,
   .content-section h1 {
     font-size: clamp(2.3rem, 14vw, 3.6rem);
   }
 
+  .home-simple h1 {
+    font-size: clamp(2.45rem, 14vw, 4.25rem);
+  }
+
+  .home-simple-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .home-icon-links .premium-glow-button,
+  .home-icon-links .icon-link {
+    width: 100% !important;
+    min-width: 0;
+  }
+
+  .home-icon-links .premium-glow-button__inner {
+    width: 100%;
+    min-height: 42px !important;
+    padding: 10px 12px !important;
+  }
+
+  .home-simple-portrait {
+    width: min(280px, 76vw);
+    min-height: 220px;
+  }
+
+  .card {
+    min-height: 190px;
+    padding: 19px;
+  }
+
+  .card::after {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+  }
+
+  .card strong {
+    max-width: 100%;
+  }
+
   .timeline-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 390px) {
+  .home-simple-links {
     grid-template-columns: 1fr;
   }
 }
@@ -528,10 +733,14 @@ img {
 .mine-track-page .mine-track-legacy-html,
 .mine-track-page .mine-track-report {
   width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .mine-track-page .landing-container {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .mine-track-page .hero-landing {
@@ -545,6 +754,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-width: 0;
 }
 
 .mine-track-page .hero-logo {
@@ -569,6 +779,7 @@ img {
 
 .mine-track-page .visual-showcase {
   min-width: 0;
+  max-width: 100%;
 }
 
 .mine-track-page .showcase-gif,
@@ -625,6 +836,7 @@ img {
 .mine-track-page .report-main {
   display: grid;
   gap: 18px;
+  min-width: 0;
 }
 
 .mine-track-page .report-page-title,
@@ -693,6 +905,7 @@ img {
 .mine-track-page .content-panel ul,
 .mine-track-page .content-panel ol {
   margin-left: 1.3rem;
+  padding-left: 1rem;
 }
 
 .mine-track-page .content-panel img {
@@ -716,6 +929,7 @@ img {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
 }
 
 .mine-track-page .figure-pair-separate-captions figcaption,
@@ -741,6 +955,8 @@ img {
   overflow-y: auto;
   max-height: 420px;
   margin-top: 12px;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 
@@ -786,6 +1002,38 @@ img {
   object-fit: contain;
   display: block;
   margin: 12px auto;
+}
+
+.legacy-content,
+.mine-track-legacy-html,
+.mine-track-report {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.legacy-content *,
+.mine-track-legacy-html *,
+.mine-track-report * {
+  min-width: 0;
+}
+
+.legacy-content p,
+.legacy-content li,
+.legacy-content td,
+.legacy-content th,
+.mine-track-legacy-html p,
+.mine-track-legacy-html li,
+.mine-track-report p,
+.mine-track-report li,
+.mine-track-report td,
+.mine-track-report th {
+  overflow-wrap: anywhere;
+}
+
+.legacy-content table,
+.mine-track-legacy-html table,
+.mine-track-report table {
+  max-width: 100%;
 }
 
 .legacy-content video,

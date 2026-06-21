@@ -4,12 +4,15 @@
   z-index: 1000;
   isolation: isolate;
   border: none;
-  background: var(--bg);
-  transition: padding 0.25s ease;
+  background: rgba(0, 0, 0, 0.66);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .nav-shell--scrolled {
-  background: var(--bg);
+  background: rgba(0, 0, 0, 0.78);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.26);
 }
 
 .nav-inner {
@@ -17,19 +20,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px clamp(16px, 3vw, 40px);
+  padding: 12px clamp(14px, 3vw, 40px);
   transition: padding 0.25s ease;
 }
 
 .nav-shell--scrolled .nav-inner {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .nav-pill-track {
@@ -40,7 +45,10 @@
   padding: 4px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 28px rgba(0, 0, 0, 0.22);
 }
 
 .nav-link {
@@ -49,8 +57,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 38px;
-  padding: 0 16px;
+  min-height: 36px;
+  padding: 0 15px;
   border-radius: 999px;
   text-decoration: none;
   color: var(--muted);
@@ -60,6 +68,7 @@
   border: none;
   background: transparent;
   transition: color 0.2s ease;
+  flex: 0 0 auto;
 }
 
 .nav-link:hover {
@@ -84,8 +93,8 @@
   );
   border: 1px solid rgba(140, 172, 138, 0.85);
   box-shadow:
-    0 0 22px rgba(179, 163, 105, 0.48),
-    0 0 22px rgba(42, 122, 184, 0.48),
+    0 0 14px rgba(179, 163, 105, 0.22),
+    0 0 16px rgba(42, 122, 184, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
@@ -97,34 +106,40 @@
 
 @media (max-width: 900px) {
   .nav-inner {
-    padding: 12px 16px;
+    justify-content: flex-start;
+    padding: 10px 12px;
   }
 
   .nav-links {
     width: 100%;
-    max-width: 360px;
+    max-width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-pill-track {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 4px;
-    width: 100%;
-    padding: 6px;
-    border-radius: 20px;
+    width: max-content;
+    min-width: max-content;
+    padding: 4px;
   }
 
   .nav-link {
-    min-height: 42px;
-    padding: 0 10px;
+    min-height: 34px;
+    padding: 0 13px;
     font-size: 0.82rem;
-    justify-content: center;
   }
 }
 
 @media (max-width: 380px) {
   .nav-link {
     font-size: 0.76rem;
-    padding: 0 6px;
+    padding: 0 10px;
   }
 }

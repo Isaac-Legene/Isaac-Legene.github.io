@@ -38,3 +38,12 @@ git push
 - `/projects` — Project list
 - `/projects/deep-rl` — Deep RL report
 - `/projects/minetrack` — Machine Learning (MineTrack)
+- `/interviews` — Graduate job search interview history
+
+## Interview data
+
+Before deploy, export from the job-search dashboard:
+
+```powershell
+python "c:\Users\isaac\Documents\Humanoid job search\dashboard\export_interviews.py"
+```
