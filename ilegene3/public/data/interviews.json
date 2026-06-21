@@ -1,9 +1,9 @@
 {
   "title": "Graduate job search",
-  "generated_at": "2026-06-21T16:22:48",
+  "generated_at": "2026-06-21T18:47:07",
   "stats": {
-    "interviews": 40,
-    "companies": 21
+    "interviews": 42,
+    "companies": 23
   },
   "interviews": [
     {
@@ -107,6 +107,18 @@
       "position": "Automation Controls/Systems Technician, Optimus",
       "date": "2026-03-12T18:00:00",
       "evidence": "Calendar event"
+    },
+    {
+      "company": "Initial Screening with Isaac",
+      "position": "Initial Screening with Isaac",
+      "date": "2026-03-11T13:00:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "Nissan",
+      "position": "ML Engineer \u2013 Prediction & Planning Intern",
+      "date": "2026-03-11T13:00:00",
+      "evidence": "Calendar event + email thread"
     },
     {
       "company": "Bot Auto",
