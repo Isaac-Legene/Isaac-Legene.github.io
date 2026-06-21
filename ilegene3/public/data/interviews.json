@@ -1,6 +1,6 @@
 {
   "title": "Graduate job search",
-  "generated_at": "2026-06-21T18:48:40",
+  "generated_at": "2026-06-21T18:49:26",
   "stats": {
     "interviews": 41,
     "companies": 22
@@ -110,7 +110,7 @@
     },
     {
       "company": "Nissan",
-      "position": "Initial Screening with Isaac",
+      "position": "ML Engineer \u2013 Prediction & Planning Intern",
       "date": "2026-03-11T13:00:00",
       "evidence": "Calendar event"
     },
