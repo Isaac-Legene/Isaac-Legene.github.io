@@ -1,9 +1,9 @@
 {
   "title": "Graduate job search",
-  "generated_at": "2026-06-21T19:01:38",
+  "generated_at": "2026-06-21T19:02:18",
   "stats": {
     "interviews": 37,
-    "companies": 22
+    "companies": 21
   },
   "interviews": [
     {
@@ -55,8 +55,8 @@
       "evidence": "Email (Inbox)"
     },
     {
-      "company": "Product development Engineer",
-      "position": "Product Development Engineer FA (staffing outreach)",
+      "company": "Startup",
+      "position": "Santa Clara, CA || FTE",
       "date": "2026-04-24T14:03:00",
       "evidence": "Email (Inbox)"
     },
