@@ -1,11 +1,17 @@
 {
   "title": "Graduate job search",
-  "generated_at": "2026-06-21T19:07:58",
+  "generated_at": "2026-06-28T13:51:55",
   "stats": {
-    "interviews": 37,
-    "companies": 21
+    "interviews": 39,
+    "companies": 22
   },
   "interviews": [
+    {
+      "company": "Tesla",
+      "position": "Systems Engineer",
+      "date": "2026-06-24T00:00:00",
+      "evidence": "Manual entry"
+    },
     {
       "company": "Startup",
       "position": "Industrial Automation Engineer (staffing outreach)",
@@ -95,6 +101,12 @@
       "position": "ML Engineer \u2013 Prediction & Planning Intern",
       "date": "2026-03-11T13:00:00",
       "evidence": "Calendar event"
+    },
+    {
+      "company": "Zoox",
+      "position": "Hardware Integration and Test Intern",
+      "date": "2026-03-06T00:00:00",
+      "evidence": "Manual entry"
     },
     {
       "company": "Bot Auto",
