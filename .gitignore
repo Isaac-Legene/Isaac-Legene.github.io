@@ -1,4 +1,6 @@
 node_modules/
+ilegene3/public/legacy/
+ilegene3/public/portfolio-images/
 .DS_Store
 Thumbs.db
 *.log

@@ -9,7 +9,10 @@ npm run build
 Pop-Location
 
 Copy-Item -Path (Join-Path $root 'ilegene3\dist\*') -Destination $root -Recurse -Force
-Copy-Item -Path (Join-Path $root 'ilegene3\public\legacy\*') -Destination (Join-Path $root 'legacy') -Recurse -Force
+$legacySource = Join-Path $root 'ilegene3\public\legacy'
+if (Test-Path $legacySource) {
+  Copy-Item -Path (Join-Path $legacySource '*') -Destination (Join-Path $root 'legacy') -Recurse -Force
+}
 
 # SPA fallback: refresh on /experience, /research, etc. serves the app (not GitHub 404)
 Copy-Item -Path (Join-Path $root 'index.html') -Destination (Join-Path $root '404.html') -Force
