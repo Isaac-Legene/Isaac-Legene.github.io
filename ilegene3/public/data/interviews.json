@@ -1,8 +1,8 @@
 {
   "title": "Graduate job search",
-  "generated_at": "2026-07-05T18:55:02",
+  "generated_at": "2026-07-05T18:57:41",
   "stats": {
-    "interviews": 41,
+    "interviews": 40,
     "companies": 23
   },
   "interviews": [
@@ -17,12 +17,6 @@
       "position": "Systems Engineer",
       "date": "2026-06-24T00:00:00",
       "evidence": "Manual entry"
-    },
-    {
-      "company": "Tesla",
-      "position": "Manufacturing Engineering \u2013 Initial Interview (Teams Video)",
-      "date": "2026-06-23T10:00:00",
-      "evidence": "Calendar event"
     },
     {
       "company": "Startup",
