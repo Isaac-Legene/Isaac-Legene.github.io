@@ -17,10 +17,5 @@ if (Test-Path $legacySource) {
 # SPA fallback: refresh on /experience, /research, etc. serves the app (not GitHub 404)
 Copy-Item -Path (Join-Path $root 'index.html') -Destination (Join-Path $root '404.html') -Force
 
-# Direct entry for the emailed dashboard link so /interviews returns 200.
-$interviewsDir = Join-Path $root 'interviews'
-New-Item -ItemType Directory -Path $interviewsDir -Force | Out-Null
-Copy-Item -Path (Join-Path $root 'index.html') -Destination (Join-Path $interviewsDir 'index.html') -Force
-
 Write-Host 'Deploy copy complete. Review with: git status'
 Write-Host 'Then: git add -A && git commit -m "Deploy site build" && git push'
