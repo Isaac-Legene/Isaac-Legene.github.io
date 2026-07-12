@@ -1,16 +1,52 @@
 {
   "title": "Graduate job search",
-  "generated_at": "2026-07-05T19:04:22",
+  "generated_at": "2026-07-12T14:10:34",
   "stats": {
-    "interviews": 40,
-    "companies": 23
+    "interviews": 46,
+    "companies": 27
   },
   "interviews": [
+    {
+      "company": "Field AI (Isaac legene)",
+      "position": "Interview with Field AI (Isaac legene)",
+      "date": "2026-07-09T16:30:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "Tesla | Isaac Legene | Virtual",
+      "position": "Intern position",
+      "date": "2026-07-06T13:30:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "AeroVect",
+      "position": "Interview with AeroVect",
+      "date": "2026-07-03T09:00:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "Tesla",
+      "position": "Tesla Phone Interview - Ilegen3@gatech.edu",
+      "date": "2026-07-02T13:30:00",
+      "evidence": "Calendar event"
+    },
+    {
+      "company": "Reminder: Your Upcoming Interview with AeroVect",
+      "position": "Reminder: Your Upcoming Interview with AeroVect",
+      "date": "2026-07-02T09:02:00",
+      "evidence": "Email (Inbox)"
+    },
     {
       "company": "DISNEY",
       "position": "Robotics Software Engineer",
       "date": "2026-06-30T23:25:00",
       "evidence": "Email (Sent Items)"
+    },
+    {
+      "company": "DISNEY",
+      "position": "DISNEY INTERVIEW CONFIRMATION: Research and Development Intern, Robotics, Summer 2026",
+      "date": "2026-06-30T15:49:00",
+      "evidence": "Email (Inbox)"
     },
     {
       "company": "Tesla",
