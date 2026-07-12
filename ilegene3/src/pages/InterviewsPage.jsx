@@ -22,7 +22,7 @@ export default function InterviewsPage() {
     let cancelled = false
     const base = import.meta.env.BASE_URL || '/'
 
-    fetch(`${base}data/interviews.json`)
+    fetch(`${base}data/interviews.json?v=${Date.now()}`, { cache: 'no-store' })
       .then((resp) => {
         if (!resp.ok) throw new Error(`Failed to load interviews (${resp.status})`)
         return resp.json()
