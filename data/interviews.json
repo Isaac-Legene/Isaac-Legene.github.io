@@ -1,9 +1,9 @@
 {
   "title": "Graduate job search",
-  "generated_at": "2026-07-12T14:24:00",
+  "generated_at": "2026-07-12T14:34:29",
   "stats": {
     "interviews": 44,
-    "companies": 25
+    "companies": 24
   },
   "interviews": [
     {
@@ -199,7 +199,7 @@
       "evidence": "Calendar event"
     },
     {
-      "company": "FieldAI",
+      "company": "Field AI",
       "position": "Research Scientist - Robot Learning",
       "date": "2026-01-07T09:45:00",
       "evidence": "Email (Inbox)"
