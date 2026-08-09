@@ -1,11 +1,17 @@
 {
   "title": "Graduate job search",
-  "generated_at": "2026-07-12T14:34:29",
+  "generated_at": "2026-08-09T17:05:08",
   "stats": {
-    "interviews": 44,
+    "interviews": 45,
     "companies": 24
   },
   "interviews": [
+    {
+      "company": "SpaceX",
+      "position": "Controls Engineer",
+      "date": "2026-08-29T12:30:00",
+      "evidence": "Calendar event"
+    },
     {
       "company": "Field AI",
       "position": "Robotics AI Engineer",
