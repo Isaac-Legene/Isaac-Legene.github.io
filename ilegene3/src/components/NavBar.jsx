@@ -8,7 +8,6 @@ const NAV_ITEMS = [
   { to: '/experience', label: 'Experience' },
   { to: '/research', label: 'Research' },
   { to: '/projects', label: 'Projects' },
-  { to: '/interviews', label: 'Interviews' },
 ]
 
 export default function NavBar() {

@@ -7,7 +7,6 @@ import ProjectsPage from './pages/ProjectsPage'
 import DeepRlPage from './pages/DeepRlPage'
 import MineTrackPage from './pages/MineTrackPage'
 import ComputerVisionPage from './pages/ComputerVisionPage'
-import InterviewsPage from './pages/InterviewsPage'
 
 export default function App() {
   return (
@@ -22,7 +21,6 @@ export default function App() {
         <Route path="/projects/minetrack" element={<MineTrackPage />} />
         <Route path="/projects/minetrack/overview" element={<MineTrackPage />} />
         <Route path="/projects/computer-vision" element={<ComputerVisionPage />} />
-        <Route path="/interviews" element={<InterviewsPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
